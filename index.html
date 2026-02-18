@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mehmet | Web Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mehmet | Web Developer & Security Enthusiast">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="background"></div>
+
+<header class="hero glass">
+    <h1 id="type"></h1>
+    <p class="subtitle">
+        Web teknolojileriyle ilgileniyorum.  
+        Arayüz, sistem ve güvenlik konularında  
+        sade ama sağlam işler üretmeye çalışıyorum.
+    </p>
+    <button class="primary" onclick="nextSection()">Devam Et</button>
+</header>
+
+<section class="section glass hidden" id="about">
+    <h2>Hakkımda</h2>
+    <p>
+        Web geliştirme sürecine sadece “site yapmak” olarak bakmıyorum.  
+        Yazdığım kodun okunabilir, sürdürülebilir ve mantıklı olmasına önem veriyorum.
+        <br><br>
+        Frontend tarafında modern arayüzler üretirken, arka planda
+        sistemin nasıl çalıştığını da anlamaya çalışırım.
+        Güvenlik benim için ekstra bir özellik değil,
+        baştan düşünülmesi gereken bir gerekliliktir.
+    </p>
+    <button class="primary" onclick="nextSection()">Devam</button>
+</section>
+
+<section class="section glass hidden" id="work">
+    <h2>Odaklandığım Alanlar</h2>
+    <p>
+        Aşağıdaki konular üzerinde aktif olarak çalışıyorum
+        ve kendimi bu alanlarda geliştirmeye devam ediyorum:
+    </p>
+    <ul>
+        <li>HTML, CSS ve JavaScript ile modern web arayüzleri</li>
+        <li>Cam efektli, animasyonlu ve sade tasarım yaklaşımları</li>
+        <li>JavaScript tabanlı küçük oyunlar ve etkileşimler</li>
+        <li>SSL, HTTPS yapılandırmaları ve domain yönetimi</li>
+        <li>Basit ama mantıklı sistem mimarileri</li>
+    </ul>
+    <button class="primary" onclick="nextSection()">Devam</button>
+</section>
+
+<section class="section glass hidden" id="project">
+    <h2>Canlı Proje</h2>
+    <p>
+        Teoriyle yetinmiyorum.  
+        Üzerinde çalıştığım projeleri canlı ortamda test etmeyi seviyorum.
+        <br><br>
+        Aşağıdaki bağlantı, geliştirdiğim
+        JavaScript tabanlı oyun altyapısına gider.
+        Kod, performans ve tarayıcı davranışlarını
+        gerçek kullanıcı senaryolarında denemek için kullanıyorum.
+    </p>
+    <button class="secondary" onclick="goGame()">Projeye Git</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
