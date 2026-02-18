@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehmet | Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a78bfa;
+            --bg: #030712;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 100% 100%, rgba(167, 139, 250, 0.15) 0%, transparent 35%);
+            font-family: 'Inter', sans-serif;
+            color: #f3f4f6;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigasyon */
+        .navbar {
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* Hero Bölümü */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 150px 25px 50px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff, #64748b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Cam Kartlar */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Proje Izgarası */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-icon {
+            height: 160px;
+            background: rgba(99, 102, 241, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #4f46e5;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* İstatistikler */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px;
+            text-align: center;
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 48px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">MEHMET.DEV</a>
+            <div class="nav-links">
+                <a href="#about">Hakkımda</a>
+                <a href="#projects">Projeler</a>
+                <a href="#contact">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Kodlayıcı & Geliştirici</h1>
+            <p>Web teknolojileri ve siber güvenlik meraklısı. Geleceği kodlarla inşa ediyorum.</p>
+            <a href="#projects" class="btn">Projelerimi Gör</a>
+        </section>
+
+        <section id="about" class="glass-card">
+            <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                <div style="flex: 2; min-width: 300px;">
+                    <h2 style="margin-bottom: 20px; font-size: 32px;">Hakkımda</h2>
+                    <p style="color: #9ca3af;">Ben Mehmet. Modern web arayüzleri, SSL güvenliği ve oyun geliştirme konularında kendimi geliştiriyorum. GitHub üzerinde aktif projeler yürütüyorum.</p>
+                </div>
+                <div style="flex: 1; min-width: 250px;" class="stats-grid">
+                    <div class="stat-item"><div class="stat-number">2+</div><div style="font-size: 12px;">Yıl Deneyim</div></div>
+                    <div class="stat-item"><div class="stat-number">5+</div><div style="font-size: 12px;">Proje</div></div>
+                    <div class="stat-item"><div class="stat-number">3</div><div style="font-size: 12px;">Domain</div></div>
+                    <div class="stat-item"><div class="stat-number">∞</div><div style="font-size: 12px;">Tutku</div></div>
+                </div>
+            </div>
+        </section>
+
+        <h2 id="projects" style="margin-bottom: 30px; font-size: 32px;">Seçkin Projeler</h2>
+        <div class="project-grid">
+            <div class="glass-card project-card">
+                <div class="project-icon">🎮</div>
+                <div class="project-info">
+                    <h3>DOOM Style Game</h3>
+                    <p style="color: #9ca3af; margin-bottom: 20px;">Tarayıcı tabanlı, aksiyon dolu retro oyun projem.</p>
+                    <a href="http://oyun.archever.qzz.io" class="btn" target="_blank">Oyna →</a>
+                </div>
+            </div>
+
+            <div class="glass-card project-card">
+                <div class="project-icon">🔐</div>
+                <div class="project-info">
+                    <h3>SSL Guide</h3>
+                    <p style="color: #9ca3af; margin-bottom: 20px;">Güvenli web için hazırladığım kapsamlı rehber.</p>
+                    <a href="#" class="btn">İncele</a>
+                </div>
+            </div>
+        </div>
+
+        <section id="contact" class="glass-card" style="text-align: center; margin-top: 80px;">
+            <h2 style="margin-bottom: 20px;">Bağlantıda Kalalım</h2>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="mailto:info@mehmet.qzz.io" style="color: white; text-decoration: none;">📧 E-posta</a>
+                <a href="https://github.com/digitalshadow659" target="_blank" style="color: white; text-decoration: none;">🐙 GitHub</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Mehmet. Crafted with Passion. 🚀</p>
+        </footer>
+    </div>
+</body>
+</html>
+
