@@ -3,6 +3,7 @@ const texts = [
     "Merhaba.",
     "Ben Web Developer.",
     "Ben Security Meraklısı."
+    "Ben Mehmet."
 ];
 
 let textIndex = 0;
