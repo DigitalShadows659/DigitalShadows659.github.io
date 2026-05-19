@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Project</title>
+    <style>
+        body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+.calculator {
+    background-color: #0a0a0a;
+    border: 2px solid lime;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.display {
+    background-color: black;
+    color: lime;
+    font-size: 2.5rem;
+    text-align: right;
+    padding: 15px;
+    border: 1px solid lime;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-family: monospace;
+    word-wrap: break-word;
+    min-height: 70px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    background-color: black;
+    color: lime;
+    font-family: monospace;
+    font-size: 1.3rem;
+    padding: 15px;
+    border: 1px solid lime;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: lime;
+    color: black;
+    box-shadow: 0 0 8px lime;
+}
+
+.clear {
+    color: #ff4444;
+    border-color: #ff4444;
+}
+
+.clear:hover {
+    background-color: #ff4444;
+    color: black;
+}
+
+.equals {
+    background-color: lime;
+    color: black;
+    grid-row: span 2;
+}
+
+.equals:hover {
+    background-color: #00cc00;
+    box-shadow: 0 0 12px lime;
+  }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="clear">C</button>
+            <button class="operator">/</button>
+            <button class="operator">*</button>
+            <button class="operator">-</button>
+            
+            <button class="number">7</button>
+            <button class="number">8</button>
+            <button class="number">9</button>
+            <button class="operator">+</button>
+            
+            <button class="number">4</button>
+            <button class="number">5</button>
+            <button class="number">6</button>
+            <button class="equals">=</button>
+            
+            <button class="number">1</button>
+            <button class="number">2</button>
+            <button class="number">3</button>
+            <button class="clear">AC</button>
+            
+            <button class="number">0</button>
+            <button class="number">00</button>
+            <button class="operator">.</button>
+        </div>
+    </div>
+    <script>
+      let currentInput = "0";
+let previousInput = "";
+let operator = null;
+let waitingForNewInput = false;
+
+const display = document.getElementById("display");
+
+function updateDisplay() {
+    display.textContent = currentInput;
+}
+
+function handleNumber(number) {
+    if (waitingForNewInput) {
+        currentInput = number;
+        waitingForNewInput = false;
+    } else {
+        if (currentInput === "0") {
+            currentInput = number;
+        } else {
+            currentInput += number;
+        }
+    }
+    updateDisplay();
+}
+
+function handleDecimal() {
+    if (waitingForNewInput) {
+        currentInput = "0.";
+        waitingForNewInput = false;
+    } else {
+        if (!currentInput.includes(".")) {
+            currentInput += ".";
+        }
+    }
+    updateDisplay();
+}
+
+function handleOperator(op) {
+    if (operator !== null && !waitingForNewInput) {
+        calculate();
+    }
+    previousInput = currentInput;
+    operator = op;
+    waitingForNewInput = true;
+}
+
+function calculate() {
+    if (operator === null || waitingForNewInput) return;
+    
+    let result;
+    const prev = parseFloat(previousInput);
+    const current = parseFloat(currentInput);
+    
+    switch (operator) {
+        case "+":
+            result = prev + current;
+            break;
+        case "-":
+            result = prev - current;
+            break;
+        case "*":
+            result = prev * current;
+            break;
+        case "/":
+            if (current === 0) {
+                result = "HATA";
+            } else {
+                result = prev / current;
+            }
+            break;
+        default:
+            return;
+    }
+    
+    if (result === "HATA") {
+        currentInput = "SIFIRLA!";
+        operator = null;
+        waitingForNewInput = true;
+    } else {
+        currentInput = result.toString();
+        operator = null;
+        waitingForNewInput = true;
+    }
+    updateDisplay();
+}
+
+function clearAll() {
+    currentInput = "0";
+    previousInput = "";
+    operator = null;
+    waitingForNewInput = false;
+    updateDisplay();
+}
+
+function clearEntry() {
+    currentInput = "0";
+    updateDisplay();
+}
+
+// Event Listener'lar
+document.querySelectorAll(".number").forEach(btn => {
+    btn.addEventListener("click", () => handleNumber(btn.textContent));
+});
+
+document.querySelectorAll(".operator").forEach(btn => {
+    btn.addEventListener("click", () => handleOperator(btn.textContent));
+});
+
+document.querySelector(".equals").addEventListener("click", calculate);
+
+document.querySelectorAll(".clear").forEach(btn => {
+    if (btn.textContent === "AC") {
+        btn.addEventListener("click", clearAll);
+    } else if (btn.textContent === "C") {
+        btn.addEventListener("click", clearEntry);
+    }
+});
+    </script>
+</body>
+</html>
