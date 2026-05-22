@@ -3,28 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Temelleri -->
-    <title>Select You Language - Mehmet.is-a.dev</title>
-    <meta name="description" content="Select your language">
+    <title>mehmet.is-a.dev - Dil Seçimi / Language Selection</title>
     <style>
-      body {
-        background-color: #1a1a1a;
-        color: white;
-        font-family: Arial , Sans-Serif;
-        text-align: center;
-      }
-      a {
-        color: white;
-        text-decoration: none;
-        font-size: 20px;
-      }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+        .language-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .lang-btn {
+            display: block;
+            padding: 15px 20px;
+            background: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .lang-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            border-color: #5a67d8;
+        }
+        .en { border-left: 5px solid #e74c3c; }
+        .tr { border-left: 5px solid #3498db; }
+        footer {
+            margin-top: 30px;
+            font-size: 0.7em;
+            color: #999;
+        }
     </style>
 </head>
 <body>
-<h1>Select You Language</h1>
-<h2>Dilini seç</h2>
-><a href="/en/index.html">English</a><br>
-><a href="/tr/index.html">Turkish</a>
+    <div class="container">
+        <h1>🌐 Select Your Language</h1>
+        <div class="subtitle">Dilini Seç</div>
+        
+        <div class="language-buttons">
+            <a href="/en/" class="lang-btn en">🇬🇧 English</a>
+            <a href="/tr/" class="lang-btn tr">🇹🇷 Türkçe</a>
+        </div>
+        
+        <footer>
+            mehmet.is-a.dev | developer & creator
+        </footer>
+    </div>
 </body>
 </html>
