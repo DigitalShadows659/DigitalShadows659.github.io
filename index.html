@@ -3,79 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mehmet.is-a.dev - Dil Seçimi / Language Selection</title>
+    <meta name="description" content="Mehmet  - yazılım geliştirici. İngilizce ve Türkçe içerikler, teknoloji eleştirileri.">
+    <meta name="keywords" content="Mehmet, yazılım, geliştirici, eleştiri, is-a-dev">
+    <meta name="author" content="Mehmet ">
+    <title>mehmet.is-a.dev</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            max-width: 400px;
-            width: 90%;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 0.9em;
-        }
-        .language-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .lang-btn {
-            display: block;
-            padding: 15px 20px;
-            background: #f0f0f0;
-            color: #333;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        .lang-btn:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-            border-color: #5a67d8;
-        }
-        .en { border-left: 5px solid #e74c3c; }
-        .tr { border-left: 5px solid #3498db; }
-        footer {
-            margin-top: 30px;
-            font-size: 0.7em;
-            color: #999;
-        }
+    margin: 0;
+    background-color: white;
+}
+.card {
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(255,255,255,0.15);
+box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    text-align: center;
+    background-color: #1a1a1a;
+    color: white;
+}
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🌐 Select Your Language</h1>
-        <div class="subtitle">Dilini Seç</div>
-        
-        <div class="language-buttons">
-            <a href="/en/" class="lang-btn en">🇬🇧 English</a>
-            <a href="/tr/" class="lang-btn tr">🇹🇷 Türkçe</a>
-        </div>
-        
-        <footer>
-            mehmet.is-a.dev | developer & creator
-        </footer>
+    <div class="card">
+    <h1>🌐 mehmet.is-a.dev</h1>
+    <p>Select your language / Dilini seç</p>
+    <a href="/en/">English</a>
+    <br>
+    <a href="/tr/">Türkçe</a>
     </div>
 </body>
 </html>
