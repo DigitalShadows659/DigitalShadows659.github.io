@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response to DigitalPlat's "Transparency Report" – mehmet.is-a.dev</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: #fafafa;
+            color: #222;
+        }
+        h1, h2 {
+            color: #c0392b;
+        }
+        h1 {
+            border-left: 5px solid #c0392b;
+            padding-left: 20px;
+        }
+        .date {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 30px;
+        }
+        .evidence {
+            background: #e8f0fe;
+            border-left: 5px solid #2980b9;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quote {
+            background: #eee;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        hr {
+            margin: 30px 0;
+        }
+        footer {
+            font-size: 0.8em;
+            text-align: center;
+            color: #7f8c8d;
+            margin-top: 40px;
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Response to DigitalPlat’s “Transparency Report”</h1>
+<div class="date">Mehmet – May 23, 2026</div>
+
+<p>DigitalPlat published a <a href="https://d3stiny.us.kg/digitalplat/response/transparency" target="_blank">“Transparency &amp; Clarification Report”</a> claiming their infrastructure is healthy. Below is my direct response, based on tests performed on <strong>May 23, 2026 at 10:18 AM (UTC+3)</strong>.</p>
+
+<div class="evidence">
+    <strong>📌 Tests on May 23, 2026 – 10:18 AM:</strong>
+    <ul>
+        <li><code>ns3.digitalplat.org</code> → <strong>REFUSED</strong> for <code>digitalplat.org</code></li>
+        <li><code>ns4.digitalplat.org</code> → <strong>REFUSED</strong> for <code>digitalplat.org</code></li>
+    </ul>
+    <p>Run the same tests today. If you still get <code>REFUSED</code>, then “it’s working” is just empty words.</p>
+</div>
+
+<h2>1. “Regional instability” does not exist</h2>
+<p>A DNS nameserver either works or it doesn’t. There is no “regional” timeout. <code>ns2.digitalplat.org</code> remains unreachable. <code>ns3</code> and <code>ns4</code> still refuse queries.</p>
+
+<div class="quote">
+$ dig @ns2.digitalplat.org digitalplat.org
+;; communications error to 150.230.46.101#53: timed out
+;; no servers could be reached
+</div>
+
+<h2>2. Your authoritative nameservers are Cloudflare</h2>
+<p>According to public DNS records:</p>
+<div class="quote">
+$ dig digitalplat.org NS
+digitalplat.org. 21600 IN NS kenia.ns.cloudflare.com.
+digitalplat.org. 21600 IN NS tony.ns.cloudflare.com.
+</div>
+<p><code>ns1</code>, <code>ns2</code>, <code>ns3</code>, <code>ns4</code> are just names. <strong>You do not have your own infrastructure.</strong> You are using Cloudflare and calling it your own.</p>
+
+<h2>3. The “Foundation” claim is misleading</h2>
+<p>Your EIN (81-2908499) belongs to <strong>The Hack Foundation</strong>. DigitalPlat has no legal entity of its own. You operate under fiscal sponsorship. Calling yourself a “Foundation” is deceptive.</p>
+
+<h2>4. The “Bank Hacking” warning is still unexplained</h2>
+<p>Your “Transparency Report” completely ignores the official warning from the .KG registry about <strong>bank hacking activities</strong>. This was documented in your own GitHub repository. Why is it missing from your “transparency” report?</p>
+
+<h2>5. Technical facts do not change with marketing language</h2>
+<p>You can write long reports, add uptime badges, and embed status pages. But none of that changes the verifiable truth:</p>
+<ul>
+    <li>✅ <code>ns1</code> works (but only as a Cloudflare forwarder)</li>
+    <li>❌ <code>ns2</code> is dead (timeout)</li>
+    <li>❌ <code>ns3</code> refuses queries (REFUSED)</li>
+    <li>❌ <code>ns4</code> refuses queries (REFUSED)</li>
+    <li>🎭 Your authoritative nameservers are Cloudflare, not your own</li>
+    <li>🏛️ You are not an independent foundation</li>
+    <li>⚠️ The .KG registry warning remains unaddressed</li>
+</ul>
+
+<hr>
+
+<p><strong>My position remains:</strong> DigitalPlat markets itself as “global infrastructure” and a “foundation,” but the technical reality does not match the claims. This is not an opinion. It is a set of verifiable facts.</p>
+
+<p>If you believe any of the above is incorrect, provide current test results (not marketing copy) that prove otherwise.</p>
+
+<footer>
+    <p>mehmet.is-a.dev | <a href="/en/criticism/digitalplat/">Original Criticism</a> | <a href="/">Home</a></p>
+    <p>Independent verification tools: <code>dig</code>, <code>nslookup</code>, <code>curl</code></p>
+</footer>
+
+</body>
+  </html>
