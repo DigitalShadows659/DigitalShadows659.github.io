@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigitalPlat Critique - mehmet.is-a.dev</title>
+    <title>Rebuttal to DigitalPlat's "Transparency Report" – mehmet.is-a.dev</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,84 +14,132 @@
             background: #fafafa;
             color: #222;
         }
-        h1, h2 { color: #c0392b; }
-        h1 { border-left: 5px solid #c0392b; padding-left: 20px; }
-        .date { color: #7f8c8d; font-size: 0.9em; margin-top: -10px; margin-bottom: 30px; }
-        .warning { background: #ffecb3; border-left: 5px solid #ff9800; padding: 15px; margin: 20px 0; }
-        .evidence { background: #e8f0fe; border-left: 5px solid #2980b9; padding: 15px; margin: 20px 0; }
-        .quote { font-style: italic; background: #eee; padding: 10px; border-radius: 8px; margin: 15px 0; }
-        hr { margin: 30px 0; }
-        a { color: #2980b9; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        footer { font-size: 0.8em; text-align: center; color: #7f8c8d; margin-top: 40px; }
-        ul li { margin-bottom: 10px; }
+        h1, h2 {
+            color: #c0392b;
+        }
+        h1 {
+            border-left: 5px solid #c0392b;
+            padding-left: 20px;
+        }
+        .date {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 30px;
+        }
+        .evidence {
+            background: #e8f0fe;
+            border-left: 5px solid #2980b9;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .contradiction {
+            background: #ffe6e6;
+            border-left: 5px solid #c0392b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quote {
+            background: #eee;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        hr {
+            margin: 30px 0;
+        }
+        footer {
+            font-size: 0.8em;
+            text-align: center;
+            color: #7f8c8d;
+            margin-top: 40px;
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
-<h1>DigitalPlat: Rotten Infrastructure, Grand Lies</h1>
-<div class="date">Mehmet - May 22, 2026</div>
+<h1>Rebuttal: DigitalPlat's "Transparency Report"</h1>
+<div class="date">Mehmet – May 23, 2026</div>
 
-<p>This article is written to critique the technical and structural issues of the platform called DigitalPlat, supported by documentation. The aim is not to destroy but to raise awareness and point out reliable alternatives.</p>
+<p>DigitalPlat published a <a href="https://digitalplat.org/transparency" target="_blank">"Transparency &amp; Clarification Report"</a>. Below is my direct response, based on tests I personally performed and publicly documented.</p>
 
-<div class="warning">
-    <strong>⚠️ Short summary:</strong> DigitalPlat markets itself with claims like "global domain infrastructure" and "foundation". However, its infrastructure is rotten, its nameservers are non-functional, it has received an official warning, its legal structure is not transparent, and it misleads its users.
+<div class="contradiction">
+    <strong>⚠️ Core Issue – Their Own Words Contradict Their Claims</strong>
+    <p>The report admits: <em>"ns2 experiences regional instability due to limited VPS resources. We currently lack the budget for additional infrastructure."</em></p>
+    <p>Yet their website still claims <strong>"global infrastructure"</strong> and <strong>"24/7 production systems"</strong>. You cannot claim "global" while admitting you can't afford a working second nameserver.</p>
 </div>
 
-<h2>1. Nameserver Catastrophe</h2>
-<p>DigitalPlat lists four nameservers in its WHOIS records (ns1, ns2, ns3, ns4). However, according to independent tests and forum findings:</p>
+<h2>1. The "Regional Instability" Myth</h2>
+<p>DNS is global. A nameserver either answers queries or it doesn't. There is no "regional" timeout. My tests on <strong>May 23, 2026 at 10:18 AM (UTC+3)</strong> show:</p>
+<div class="quote">
+$ dig @ns2.digitalplat.org digitalplat.org
+;; communications error to 150.230.46.101#53: timed out
+;; no servers could be reached
+</div>
+<p>This is not "regional instability". This is a dead nameserver. <strong>If your budget cannot keep ns2 alive, do not call yourself "global infrastructure".</strong></p>
+
+<h2>2. ns3 and ns4 Still Return REFUSED</h2>
+<p>The report claims ns3 and ns4 are "Stable" and "Active". My tests from the same morning:</p>
+<div class="quote">
+$ dig @ns3.digitalplat.org digitalplat.org
+;; status: REFUSED
+
+$ dig @ns4.digitalplat.org digitalplat.org
+;; status: REFUSED
+</div>
+<p>A nameserver that returns <code>REFUSED</code> for its own domain (<code>digitalplat.org</code>) is not "stable". It is refusing to do its job. <strong>Run the same commands yourself. The result will not change.</strong></p>
+
+<h2>3. Authoritative Nameservers Are Cloudflare – Not Yours</h2>
+<p>The report ignores a verifiable fact. Public DNS records show:</p>
+<div class="quote">
+$ dig digitalplat.org NS
+digitalplat.org. 21600 IN NS kenia.ns.cloudflare.com.
+digitalplat.org. 21600 IN NS tony.ns.cloudflare.com.
+</div>
+<p>Your authoritative nameservers belong to Cloudflare. The names <code>ns1</code>, <code>ns2</code>, <code>ns3</code>, <code>ns4</code> are just labels. <strong>You do not operate your own DNS infrastructure.</strong> You are reselling Cloudflare and calling it your own.</p>
+
+<h2>4. The "Foundation" Claim Remains Misleading</h2>
+<p>The report says: <em>"Fiscal sponsorship under a verified 501(c)(3), with EIN and IRS records publicly verifiable."</em></p>
+<p>That EIN (<strong>81-2908499</strong>) belongs to <strong>The Hack Foundation</strong>, not to DigitalPlat. DigitalPlat has no legal entity of its own. Calling yourself a "Foundation" while operating under fiscal sponsorship is misleading. <strong>Update your website to clearly state: "DigitalPlat is a project fiscally sponsored by The Hack Foundation."</strong></p>
+
+<h2>5. The .KG Registry Warning Is Still Missing from Your "Transparency" Report</h2>
+<p>Your own GitHub repository documented an official warning from the .KG registry on October 16, 2024, due to <strong>"malicious activities (including Bank Hacking)"</strong>.</p>
+<p>This warning is <strong>completely absent</strong> from your "Transparency Report". A report that omits its own registry warning is not transparent. <strong>Explain this warning or remove the word "transparency" from your report title.</strong></p>
+
+<h2>6. Invitation to Verify (I Already Did)</h2>
+<p>The report invites readers to run verification commands. I ran them. The results:</p>
 <ul>
-    <li><strong>ns2.digitalplat.org</strong> → ❌ Not working (shows nginx "Welcome" page, no response to DNS queries)</li>
-    <li><strong>ns3.digitalplat.org</strong> → ❌ Not working ("Website not found" error)</li>
-    <li><strong>ns4.digitalplat.org</strong> → ❌ Completely dead (Connection error)</li>
-    <li><strong>ns1.digitalplat.org</strong> → ⚠️ Partially working but misconfigured</li>
+    <li>✅ <code>ns1</code> works (but forwards to Cloudflare)</li>
+    <li>❌ <code>ns2</code> is dead (timeout)</li>
+    <li>❌ <code>ns3</code> returns <code>REFUSED</code> for its own domain</li>
+    <li>❌ <code>ns4</code> returns <code>REFUSED</code> for its own domain</li>
+    <li>🎭 Authoritative nameservers are Cloudflare, not DigitalPlat's own</li>
+    <li>🏛️ No independent legal entity — fiscal sponsorship only</li>
+    <li>⚠️ .KG registry warning (Bank Hacking) is not addressed</li>
 </ul>
-<p>This situation has been officially identified on the InfinityFree forum as "DigitalPlat's servers are broken". The fact that the DNS infrastructure is this rotten completely invalidates the platform's claim of being a "reliable infrastructure".</p>
 
 <div class="evidence">
-    <strong>📌 Source:</strong> InfinityFree Forum - "DigitalPlat's servers are broken. 2 out of 3 servers are completely dead, and the 1 working server is incorrectly configured."
+    <strong>📌 Conclusion</strong>
+    <p>DigitalPlat's "Transparency Report" does not change the technical reality. It admits budget constraints, ignores REFUSED responses, and avoids the registry warning. A long report with uptime badges does not replace working nameservers or honest organizational labeling.</p>
+    <p><strong>My criticism was and remains:</strong> Your marketing claims do not match your technical reality. That is not an opinion. It is a verifiable fact.</p>
+    <p>If you believe any of my test results are incorrect, publish your own current <code>dig</code> outputs — not uptime badges, not marketing copy. I will wait.</p>
 </div>
 
-<h2>2. Official Warning from .KG Registry: Bank Hacking</h2>
-<p>According to DigitalPlat's own GitHub repository, on October 16, 2024, they received an <strong>official warning</strong> from the .KG registry. The reason for the warning: "large number of malicious activities (including Bank Hacking)". As a result, new registrations were temporarily suspended.</p>
-<p>It is a major trust issue for a platform that markets itself as "trustworthy" to its users to receive such a warning and hide it from its users.</p>
-
-<div class="quote">
-    "On October 16, 2024 (UTC), we received a warning from the .KG registry due to subdomains being used for large number of malicious activities (including Bank Hacking)."
-</div>
-
-<h2>3. The "Foundation" Lie and EIN Theft</h2>
-<p>DigitalPlat presents itself as "DigitalPlat Foundation" on its website. However:</p>
-<ul>
-    <li>DigitalPlat has no legal entity of its own. It is a project operating under the fiscal sponsorship of The Hack Foundation.</li>
-    <li>The EIN number they show on their website (81-2908499) belongs to The Hack Foundation. DigitalPlat does not have its own EIN.</li>
-    <li>Calling itself a "foundation" is using an illegal title and misleads users.</li>
-</ul>
-
-<h2>4. "Global Infrastructure" Claim and ToS Contradiction</h2>
-<p>They attract users with claims like "24/7 production systems", "built to last", "global domain infrastructure" on their homepage. However, their own Terms of Service (ToS) clearly state:</p>
-<div class="quote">
-    "We do not guarantee uptime, root zone inclusion, or uninterrupted DNS propagation."
-</div>
-<p>In other words, they do not guarantee uptime, proper DNS propagation, or even that the domain will be in the root zone. The contradiction between the "24/7 production" claim and the statement "no uptime guarantee" makes the platform's reliability questionable.</p>
-
-<h2>5. Cloudflare and DNS Infrastructure Reality</h2>
-<p>DigitalPlat teaches its users step by step how to use Cloudflare. In other words, they don't actually have their own DNS infrastructure; they just do NS record redirection. The claim "we have our own DNS infrastructure" does not reflect the truth.</p>
-
-<h2>6. Security and Reputation Issues</h2>
-<p>In May 2026, DigitalPlat announced that their Telegram accounts had been compromised and were spreading scam messages. A platform's inability to secure its own official communication channel is an indicator of a general security vulnerability.</p>
-
-<h2>Conclusion</h2>
-<p>DigitalPlat is a platform that does good marketing but has extremely weak infrastructure, a non-transparent legal structure, and misleads its users. While the promise of a "free domain" is tempting, the technical issues, security vulnerabilities, and misleading marketing tactics make this platform unreliable.</p>
-
-<p><strong>Recommendation:</strong> Those in need of a domain name should turn to community-based, transparent, and reliable projects like <a href="https://is-a.dev" target="_blank">is-a.dev</a>.</p>
-Screenshot_20260523-092347-display-0.png.png
 <hr>
-Screenshots
-    <img src="Screenshot_20260523-092347-display-0.png.png" alt="digitalplat" style="width: 100%; max-width: 600px;">
+
 <footer>
-    <p>All claims in this article are proven by DigitalPlat's own published documents, independent forum findings, and personally conducted technical tests.</p>
+    <p>mehmet.is-a.dev | <a href="/en/criticism/digitalplat/">Original Criticism</a> | <a href="/">Home</a></p>
+    <p>Independent verification: <code>dig</code>, <code>nslookup</code>, <code>curl</code> — any user can repeat these tests.</p>
 </footer>
 
 </body>
-</html>
+    </html>
