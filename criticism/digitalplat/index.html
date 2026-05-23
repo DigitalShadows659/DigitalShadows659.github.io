@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rebuttal to DigitalPlat's "Transparency Report" – mehmet.is-a.dev</title>
+    <title>The Hall of Shame – A Response to DigitalPlat – mehmet.is-a.dev</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -27,15 +27,15 @@
             margin-top: -10px;
             margin-bottom: 30px;
         }
-        .evidence {
-            background: #e8f0fe;
-            border-left: 5px solid #2980b9;
+        .shame-highlight {
+            background: #ffe6e6;
+            border-left: 5px solid #c0392b;
             padding: 15px;
             margin: 20px 0;
         }
-        .contradiction {
-            background: #ffe6e6;
-            border-left: 5px solid #c0392b;
+        .evidence {
+            background: #e8f0fe;
+            border-left: 5px solid #2980b9;
             padding: 15px;
             margin: 20px 0;
         }
@@ -45,7 +45,6 @@
             border-radius: 8px;
             margin: 15px 0;
             font-family: monospace;
-            white-space: pre-wrap;
         }
         hr {
             margin: 30px 0;
@@ -67,79 +66,87 @@
 </head>
 <body>
 
-<h1>Rebuttal: DigitalPlat's "Transparency Report"</h1>
+<h1>They Spoke of Transparency… Then Opened a "Hall of Shame"</h1>
 <div class="date">Mehmet – May 23, 2026</div>
 
-<p>DigitalPlat published a <a href="https://digitalplat.org/transparency" target="_blank">"Transparency &amp; Clarification Report"</a>. Below is my direct response, based on tests I personally performed and publicly documented.</p>
+<p>DigitalPlat published a <strong>"Transparency & Clarification Report"</strong>. They asked for calm, technical discussion. They spoke of facts, evidence, and open dialogue.</p>
 
-<div class="contradiction">
-    <strong>⚠️ Core Issue – Their Own Words Contradict Their Claims</strong>
-    <p>The report admits: <em>"ns2 experiences regional instability due to limited VPS resources. We currently lack the budget for additional infrastructure."</em></p>
-    <p>Yet their website still claims <strong>"global infrastructure"</strong> and <strong>"24/7 production systems"</strong>. You cannot claim "global" while admitting you can't afford a working second nameserver.</p>
+<p>But at the very same time, in their own Discord server:</p>
+
+<div class="shame-highlight">
+    <strong>📌 A channel named <code>#hall-of-shame</code> was created.</strong><br>
+    Its purpose? To post screenshots of my profile. To mock. To call others to "tomato him".<br>
+    Not a single technical counter‑argument. Just personal ridicule.
 </div>
 
-<h2>1. The "Regional Instability" Myth</h2>
-<p>DNS is global. A nameserver either answers queries or it doesn't. There is no "regional" timeout. My tests on <strong>May 23, 2026 at 10:18 AM (UTC+3)</strong> show:</p>
+<p>This is the gap between their <strong>public report</strong> and their <strong>private actions</strong>.</p>
+
+<h2>What Did the "Transparency Report" Say?</h2>
+
 <div class="quote">
-$ dig @ns2.digitalplat.org digitalplat.org
-;; communications error to 150.230.46.101#53: timed out
-;; no servers could be reached
+    "We respect the author's right to critique."<br>
+    "Our commitment is to transparency, continuous improvement, and providing verifiable technical data."<br>
+    "Note: This section is intended to provide clarification rather than dispute personal interpretations."
 </div>
-<p>This is not "regional instability". This is a dead nameserver. <strong>If your budget cannot keep ns2 alive, do not call yourself "global infrastructure".</strong></p>
 
-<h2>2. ns3 and ns4 Still Return REFUSED</h2>
-<p>The report claims ns3 and ns4 are "Stable" and "Active". My tests from the same morning:</p>
-<div class="quote">
-$ dig @ns3.digitalplat.org digitalplat.org
-;; status: REFUSED
+<p>But behind the scenes:</p>
 
-$ dig @ns4.digitalplat.org digitalplat.org
-;; status: REFUSED
-</div>
-<p>A nameserver that returns <code>REFUSED</code> for its own domain (<code>digitalplat.org</code>) is not "stable". It is refusing to do its job. <strong>Run the same commands yourself. The result will not change.</strong></p>
-
-<h2>3. Authoritative Nameservers Are Cloudflare – Not Yours</h2>
-<p>The report ignores a verifiable fact. Public DNS records show:</p>
-<div class="quote">
-$ dig digitalplat.org NS
-digitalplat.org. 21600 IN NS kenia.ns.cloudflare.com.
-digitalplat.org. 21600 IN NS tony.ns.cloudflare.com.
-</div>
-<p>Your authoritative nameservers belong to Cloudflare. The names <code>ns1</code>, <code>ns2</code>, <code>ns3</code>, <code>ns4</code> are just labels. <strong>You do not operate your own DNS infrastructure.</strong> You are reselling Cloudflare and calling it your own.</p>
-
-<h2>4. The "Foundation" Claim Remains Misleading</h2>
-<p>The report says: <em>"Fiscal sponsorship under a verified 501(c)(3), with EIN and IRS records publicly verifiable."</em></p>
-<p>That EIN (<strong>81-2908499</strong>) belongs to <strong>The Hack Foundation</strong>, not to DigitalPlat. DigitalPlat has no legal entity of its own. Calling yourself a "Foundation" while operating under fiscal sponsorship is misleading. <strong>Update your website to clearly state: "DigitalPlat is a project fiscally sponsored by The Hack Foundation."</strong></p>
-
-<h2>5. The .KG Registry Warning Is Still Missing from Your "Transparency" Report</h2>
-<p>Your own GitHub repository documented an official warning from the .KG registry on October 16, 2024, due to <strong>"malicious activities (including Bank Hacking)"</strong>.</p>
-<p>This warning is <strong>completely absent</strong> from your "Transparency Report". A report that omits its own registry warning is not transparent. <strong>Explain this warning or remove the word "transparency" from your report title.</strong></p>
-
-<h2>6. Invitation to Verify (I Already Did)</h2>
-<p>The report invites readers to run verification commands. I ran them. The results:</p>
 <ul>
-    <li>✅ <code>ns1</code> works (but forwards to Cloudflare)</li>
-    <li>❌ <code>ns2</code> is dead (timeout)</li>
-    <li>❌ <code>ns3</code> returns <code>REFUSED</code> for its own domain</li>
-    <li>❌ <code>ns4</code> returns <code>REFUSED</code> for its own domain</li>
-    <li>🎭 Authoritative nameservers are Cloudflare, not DigitalPlat's own</li>
-    <li>🏛️ No independent legal entity — fiscal sponsorship only</li>
-    <li>⚠️ .KG registry warning (Bank Hacking) is not addressed</li>
+    <li>❌ A <strong>#hall-of-shame</strong> channel was created.</li>
+    <li>❌ My Discord profile was posted there without consent.</li>
+    <li>❌ Comments like <strong>"tomato him"</strong>, <strong>"EZ"</strong>, <strong>"get a job"</strong> were added.</li>
+    <li>❌ The goal was clearly to humiliate, not to discuss.</li>
 </ul>
 
 <div class="evidence">
-    <strong>📌 Conclusion</strong>
-    <p>DigitalPlat's "Transparency Report" does not change the technical reality. It admits budget constraints, ignores REFUSED responses, and avoids the registry warning. A long report with uptime badges does not replace working nameservers or honest organizational labeling.</p>
-    <p><strong>My criticism was and remains:</strong> Your marketing claims do not match your technical reality. That is not an opinion. It is a verifiable fact.</p>
-    <p>If you believe any of my test results are incorrect, publish your own current <code>dig</code> outputs — not uptime badges, not marketing copy. I will wait.</p>
+    <strong>📌 This is not "transparency".</strong> This is not "respecting the right to critique".<br>
+    This is a public attempt to silence and shame someone who pointed out technical facts.
 </div>
 
+<h2>What Did I Actually Do?</h2>
+
+<p>I ran standard DNS tests. I shared the results. I quoted their own GitHub warnings. I asked honest, technical questions.</p>
+
+<p>I did not:</p>
+<ul>
+    <li>❌ Insult anyone personally</li>
+    <li>❌ Create a "shame" channel</li>
+    <li>❌ Mock anyone's profile</li>
+    <li>❌ Tell anyone to "get a job"</li>
+</ul>
+
+<p>I simply published verifiable evidence about infrastructure that was not working as advertised.</p>
+
+<h2>Why Does This Matter?</h2>
+
+<p>Anyone can make technical mistakes. Anyone can have budget limits. But when you publish a <strong>"transparency report"</strong> while running a <strong>"hall of shame"</strong> in your own community, you lose the right to claim the high ground.</p>
+
+<p>Transparency is not a document. It is behavior.</p>
+
+<div class="shame-highlight">
+    <strong>⚡ A real transparency report would include:</strong><br>
+    – A clear explanation of the .KG registry warning (bank hacking)<br>
+    – A direct answer about why ns2 remains unreachable<br>
+    – A correction of the "Foundation" branding<br>
+    – An apology for the <strong>#hall-of-shame</strong> channel
+</div>
+
+<p>None of that is in their report.</p>
+
+<h2>Conclusion</h2>
+
+<p>DigitalPlat's "Transparency Report" asks for technical discussion. But their actions show a different intention: mock, isolate, and humiliate those who ask hard questions.</p>
+
+<p><strong>You cannot request respect while running a shame campaign.</strong></p>
+
+<p>I have no personal anger. I simply document facts — both about their infrastructure and about their community conduct. The choice to change is theirs.</p>
+<img src="Screenshot_20260523-092347-display-0.png.png" alt="DigitalPlat's hall of shame channel showing my profile" style="width: 100%; max-width: 600px; border: 1px solid #ccc; border-radius: 8px;">
 <hr>
 
 <footer>
     <p>mehmet.is-a.dev | <a href="/en/criticism/digitalplat/">Original Criticism</a> | <a href="/">Home</a></p>
-    <p>Independent verification: <code>dig</code>, <code>nslookup</code>, <code>curl</code> — any user can repeat these tests.</p>
+    <p>Facts, not insults. Evidence, not shame.</p>
 </footer>
 
 </body>
-    </html>
+</html>
