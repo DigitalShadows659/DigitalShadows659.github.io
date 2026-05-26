@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehmet'in Denemeleri</title>
+    <style>
+      body {
+        background-color: #ADD8E6;
+        color: black;
+        font-family: Arial, Sans-Serif;
+        padding: 20px;
+        text-align: center;
+      }
+
+      section {
+        background-color: brown;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        border: 5px solid gold; 
+        margin-top: 50px; 
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      button {
+        color: lightblue;
+        background-color: black;
+        padding: 10px 20px;
+        cursor: pointer; 
+        border: 2px solid lightblue;
+        border-radius: 5px;
+      }
+
+      button:hover {
+        color: white;
+        background-color: #333;
+        transition: 0.3s;
+      }
+    </style>
+</head>
+<body>
+
+  <section>
+    <h1>Hava Durumu</h1>
+    <h2>Bugün: Güneşli</h2>
+    <button onclick="alarmVer()">Hava Durumunu Görmek İçin Dokun</button>
+  </section>
+
+  <script>
+    function alarmVer() {
+      alert("Hava şu an -9999 Derece! (Çok soğuk!)");
+    }
+  </script> 
+
+</body>
+</html>
