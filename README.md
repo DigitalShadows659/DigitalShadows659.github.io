@@ -36,9 +36,6 @@ if you really want to reach me:
 
 ## final words
 
-this site is not here to impress anyone.  
-it's here because i made it.  
-and that's enough for me.
 
 thanks for stopping by.
 
