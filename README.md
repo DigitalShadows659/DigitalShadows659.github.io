@@ -24,8 +24,6 @@ math, turkish, science, music, art… and others.
 because i wanted a place to put my experiments.  
 my first real domain. my first real "i built this" moment.
 
-i started on DigitalPlat (yeah, that was a mistake).  
-then i found is-a.dev. never looked back.
 
 ## contact?
 
