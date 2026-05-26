@@ -32,7 +32,7 @@ if you really want to reach me:
 
 ## experiments
 
-- [weather app attempt](/test/weatherdeneme.html) — it tries. sometimes it even works.
+- [weather app attempt](https://mehmet.is-a.dev/en/experiments/weathergui) — it tries. sometimes it even works.
 
 ## final words
 
