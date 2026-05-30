@@ -44,14 +44,14 @@
 <body>
 
   <section>
-    <h1>Hava Durumu</h1>
-    <h2>Bugün: Güneşli</h2>
-    <button onclick="alarmVer()">Hava Durumunu Görmek İçin Dokun</button>
+    <h1>Weather</h1>
+    <h2>Today: Sunny</h2>
+    <button onclick="alarmVer()">tap to see the weather</button>
   </section>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     function alarmVer() {
-      alert("Hava şu an -9999 Derece! (Çok soğuk!)");
+      Swal.fire("Temperature is -9999°C right now!🥶🧊 (It's freezing!)");
     }
   </script> 
 
