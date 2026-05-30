@@ -34,6 +34,9 @@ if you really want to reach me:
 
 - [weather app attempt](https://mehmet.is-a.dev/en/experiments/weathergui) — it tries. sometimes it even works.
 
+- # license
+- "This site(https://mehmet.is-a.dev/en/experiments/weathergui.html and https://mehmet.is-a.dev/tr/test/weatherdeneme.html) uses the SweetAlert2 library. (MIT License)
+
 ## final words
 
 
