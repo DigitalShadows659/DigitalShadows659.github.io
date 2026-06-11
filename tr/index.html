@@ -9,7 +9,9 @@
 </head>
 
 <body>
-
+<nav><button onclick="white()">White Theme</button> <button onclick="dark()">Dark Theme</button>
+  
+</nav>
 <header>
   <section>
     <h1>Selam, ben Mehmet.</h1>
@@ -72,6 +74,14 @@
   </section>
 
 </main>
-
+<script>
+  function white() {
+    document.documentElement.style.setProperty('--beyaz', 'white');
+  }
+  function white() {
+    document.documentElement.style.setProperty('--siyah', '#111');
+  }
+  
+</script>
 </body>
 </html>
