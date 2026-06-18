@@ -1,460 +1,472 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="tr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MehmetOS GNU/Linux</title>
+    <style>
+        body {
+            background-color: #0c0c0c;
+            color: #cccccc;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            margin: 0;
+            padding: 10px;
+            overflow-x: hidden;
+            cursor: text;
+        }
 
-<meta charset="UTF-8">
+        #terminal {
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        .prompt-line {
+            display: flex;
+            align-items: flex-start;
+        }
 
-<title>MehmetOS GNU/Linux</title>
+        .prompt-text {
+            white-space: pre;
+        }
 
+        .user { color: #8ae234; font-weight: bold; }
+        .path { color: #729fcf; font-weight: bold; }
+        .ok { color: #32cd32; font-weight: bold; }
+        .failed { color: #ff3333; font-weight: bold; }
+        .depend { color: #ffb300; font-weight: bold; }
+        .dir { color: #729fcf; font-weight: bold; }
+        .file { color: #cccccc; }
 
-<style>
+        input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #cccccc;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            flex-grow: 1;
+            caret-color: #8ae234; /* Yanıp sönen yeşil imleç */
+        }
 
-body{
-    background:#000;
-    color:#00ff00;
-    font-family:monospace;
-    font-size:18px;
-    padding:20px;
-}
-
-
-#terminal{
-    white-space:pre-wrap;
-}
-
-
-input{
-
-    background:transparent;
-    border:none;
-    outline:none;
-
-    color:#00ff00;
-
-    font-family:monospace;
-    font-size:18px;
-
-    width:300px;
-}
-
-
-.prompt{
-
-    display:flex;
-
-}
-
-
-</style>
-
+        /* GRUB Menü Stili */
+        #grub {
+            border: 2px solid #ccc;
+            padding: 10px;
+            width: 80%;
+            margin: 20px auto;
+            background: #000;
+            color: #ccc;
+        }
+        .grub-highlight {
+            background-color: #ccc;
+            color: #000;
+        }
+    </style>
 </head>
-
-
 <body>
-
 
 <div id="terminal"></div>
 
-
-
 <script>
-
-
-const terminal =
-document.getElementById("terminal");
-
-
-
-function print(text){
-
-let div =
-document.createElement("div");
-
-div.innerHTML=text;
-
-terminal.appendChild(div);
-
-terminal.scrollTop =
-terminal.scrollHeight;
-
-}
-
-
-
-
-
-let boot=[
-
-"GNU GRUB version 2.12",
-"",
-"Loading MehmetOS GNU/Linux...",
-"Loading kernel...",
-"Loading initramfs...",
-"",
-"[ OK ] CPU initialized",
-"[ OK ] Memory initialized",
-"[ OK ] Drivers loaded",
-"[ OK ] Filesystem mounted",
-"[ OK ] Starting systemd",
-"[ OK ] Network started",
-"[ OK ] Login manager started",
-"",
-"MehmetOS GNU/Linux",
-"System ready.",
-""
-
-];
-
-
-
-let x=0;
-
-
-
-function startBoot(){
-
-
-if(x < boot.length){
-
-
-print(boot[x]);
-
-x++;
-
-
-setTimeout(
-startBoot,
-350
-);
-
-
-}
-
-else{
-
-
-setTimeout(startTerminal,1000);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-function startTerminal(){
-
-
-terminal.innerHTML="";
-
-
-print(
-"MehmetOS GNU/Linux Terminal"
-);
-
-
-print(
-"Type help for commands."
-);
-
-
-newInput();
-
-
-}
-
-
-
-
-
-
-function newInput(){
-
-
-
-let row =
-document.createElement("div");
-
-
-row.className="prompt";
-
-
-
-let text =
-document.createElement("span");
-
-
-text.innerHTML =
-"root@mhtos:~$ ";
-
-
-
-let input =
-document.createElement("input");
-
-
-
-row.appendChild(text);
-
-row.appendChild(input);
-
-
-
-terminal.appendChild(row);
-
-
-
-input.focus();
-
-
-
-
-
-input.addEventListener(
-"keydown",
-function(e){
-
-
-
-if(e.key==="Enter"){
-
-
-let value =
-input.value.trim();
-
-
-
-let cmd =
-value.toLowerCase();
-
-
-
-input.disabled=true;
-
-
-
-print(
-"root@mhtos:~$ "+value
-);
-
-
-
-runCommand(cmd,value);
-
-
-
-}
-
-});
-
-
-
-}
-
-
-
-
-
-
-function runCommand(cmd,value){
-
-
-
-switch(cmd){
-
-
-
-case "help":
-
-print(
-`
-help
-ls
-pwd
-whoami
-uname
-date
-echo text
-neofetch
-clear
-reboot
-shutdown
-`
-);
-
-break;
-
-
-
-
-
-case "ls":
-
-print(
-"Documents  Downloads  Music  Pictures  Videos"
-);
-
-break;
-
-
-
-
-
-case "pwd":
-
-print("/root");
-
-break;
-
-
-
-
-
-case "whoami":
-
-print("root");
-
-break;
-
-
-
-
-
-case "uname":
-
-print(
-"Linux mhtos 6.18-custom x86_64 GNU/Linux"
-);
-
-break;
-
-
-
-
-
-case "date":
-
-print(
-new Date()
-);
-
-break;
-
-  case "neofetch":
-
-let ram = navigator.deviceMemory || "Unknown";
-
-print(
-`
+    const terminal = document.getElementById("terminal");
+    const bootTime = Date.now();
+    
+    // --- SANAL DOSYA SİSTEMİ (VFS) KURULUMU ---
+    let vfs = JSON.parse(localStorage.getItem('mehmetos_vfs'));
+    if (!vfs) {
+        vfs = {
+            type: "dir",
+            content: {
+                "home": {
+                    type: "dir",
+                    content: {
+                        "mehmet": {
+                            type: "dir",
+                            content: {
+                                "Documents": { type: "dir", content: {} },
+                                "Downloads": { type: "dir", content: {} },
+                                "readme.txt": { type: "file", content: "MehmetOS'a hos geldin! Bu dosya localStorage ile kaydedildi." }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        saveVFS();
+    }
+    
+    let currentPath = ["home", "mehmet"];
+    
+    function saveVFS() {
+        localStorage.setItem('mehmetos_vfs', JSON.stringify(vfs));
+    }
+
+    function resolvePath(targetStr) {
+        if (!targetStr) return currentPath;
+        let parts = targetStr.split('/').filter(p => p !== '');
+        let newPath = targetStr.startsWith('/') ? [] : [...currentPath];
+
+        for (let p of parts) {
+            if (p === '.') continue;
+            if (p === '..') {
+                if (newPath.length > 0) newPath.pop();
+            } else {
+                newPath.push(p);
+            }
+        }
+        return newPath;
+    }
+
+    function getNode(pathArr) {
+        let curr = vfs;
+        for (let p of pathArr) {
+            if (curr.type !== 'dir' || !curr.content[p]) return null;
+            curr = curr.content[p];
+        }
+        return curr;
+    }
+
+    // --- KOMUT GEÇMİŞİ ---
+    let history = [];
+    let historyIndex = -1;
+
+    // --- YARDIMCI FONKSİYONLAR ---
+    function print(text, isHtml = false) {
+        let div = document.createElement("div");
+        if (isHtml) {
+            div.innerHTML = text;
+        } else {
+            div.textContent = text;
+        }
+        terminal.appendChild(div);
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function getUptime() {
+        let up = Math.floor((Date.now() - bootTime) / 1000);
+        let m = Math.floor(up / 60);
+        let s = up % 60;
+        return `${m} mins, ${s} secs`;
+    }
+
+    // --- BOOT SÜRECİ VE GRUB ---
+    const grubScreen = `
+<div id="grub">
+    <div style="text-align:center;">GNU GRUB version 2.12</div>
+    <br>
+    <div class="grub-highlight"> *MehmetOS GNU/Linux</div>
+    <div>  Advanced options for MehmetOS GNU/Linux</div>
+    <br><br><br><br>
+    <div>Use the ^ and v keys to change the selection.</div>
+    <div>Press enter to boot the selected OS.</div>
+    <div>The highlighted entry will be executed automatically in <span id="grub-sec">3</span>s.</div>
+</div>`;
+
+    const bootLogs = [
+        "Loading MehmetOS GNU/Linux...",
+        "Loading initial ramdisk...",
+        "",
+        "[    0.000000] Linux version 6.18-mehmetos",
+        "[    0.015201] x86/fpu: Supporting XSAVE feature",
+        "[    0.022188] BIOS-provided physical RAM map:",
+        "[    0.038112] Reserving Intel graphics memory",
+        "[    0.054201] ACPI: Early table checksum verification disabled",
+        "[    0.070443] Detected 8 CPU cores",
+        "[    0.088145] Initializing scheduler",
+        "[    0.101992] Loading kernel modules",
+        "[    0.145331] Starting systemd 257",
+        "[  OK  ] Mounted /boot",
+        "[  OK  ] Mounted /home",
+        "[  OK  ] Started Journal Service",
+        "[  OK  ] Started Network Manager",
+        "[FAILED] Failed to start Bluetooth Service",
+        "[DEPEND] Dependency failed for Bluetooth Support",
+        "[  OK  ] Started Login Service",
+        "[  OK  ] Reached Multi-User Target",
+        "[  OK  ] Reached Graphical Target",
+        "",
+        "MehmetOS GNU/Linux login"
+    ];
+
+    let logIndex = 0;
+
+    function colorizeLog(line) {
+        return line.replace("[  OK  ]", "[  <span class='ok'>OK</span>  ]")
+                   .replace("[FAILED]", "[<span class='failed'>FAILED</span>]")
+                   .replace("[DEPEND]", "[<span class='depend'>DEPEND</span>]");
+    }
+
+    function startBootLogs() {
+        if (logIndex < bootLogs.length) {
+            print(colorizeLog(bootLogs[logIndex]), true);
+            logIndex++;
+            setTimeout(startBootLogs, Math.random() * 80 + 20); // 20-100ms arası rastgele hız
+        } else {
+            setTimeout(startTerminal, 500);
+        }
+    }
+
+    function init() {
+        terminal.innerHTML = grubScreen;
+        let sec = 3;
+        let timer = setInterval(() => {
+            sec--;
+            let secEl = document.getElementById("grub-sec");
+            if(secEl) secEl.innerText = sec;
+            if (sec <= 0) {
+                clearInterval(timer);
+                terminal.innerHTML = "";
+                startBootLogs();
+            }
+        }, 1000);
+    }
+
+    // --- TERMİNAL ARAYÜZÜ ---
+    function startTerminal() {
+        print("<br>Welcome to MehmetOS GNU/Linux!", true);
+        print("Type 'help' for a list of available commands.<br>", true);
+        newInput();
+    }
+
+    function getPromptString() {
+        let displayPath = "/" + currentPath.join("/");
+        if (displayPath.startsWith("/home/mehmet")) {
+            displayPath = displayPath.replace("/home/mehmet", "~");
+        }
+        return `<span class="user">mehmet@mhtos</span>:<span class="path">${displayPath}</span>$ `;
+    }
+
+    function newInput() {
+        let row = document.createElement("div");
+        row.className = "prompt-line";
+
+        let text = document.createElement("span");
+        text.className = "prompt-text";
+        text.innerHTML = getPromptString();
+
+        let input = document.createElement("input");
+        input.type = "text";
+        input.autocomplete = "off";
+        input.spellcheck = false;
+
+        row.appendChild(text);
+        row.appendChild(input);
+        terminal.appendChild(row);
+
+        input.focus();
+        window.scrollTo(0, document.body.scrollHeight);
+
+        // Boşluğa tıklayınca inputa odaklan
+        document.onclick = () => input.focus();
+
+        input.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                let value = input.value.trim();
+                input.disabled = true;
+                
+                if (value !== "") {
+                    history.push(value);
+                    historyIndex = history.length;
+                }
+                
+                runCommand(value);
+            } 
+            else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    input.value = history[historyIndex];
+                }
+            } 
+            else if (e.key === "ArrowDown") {
+                e.preventDefault();
+                if (historyIndex < history.length - 1) {
+                    historyIndex++;
+                    input.value = history[historyIndex];
+                } else {
+                    historyIndex = history.length;
+                    input.value = "";
+                }
+            }
+        });
+    }
+
+    // --- KOMUT İŞLEYİCİSİ ---
+    function runCommand(rawValue) {
+        if (rawValue === "") {
+            newInput();
+            return;
+        }
+
+        let args = rawValue.split(/\s+/);
+        let cmd = args[0].toLowerCase();
+
+        switch (cmd) {
+            case "help":
+                print("Available commands:");
+                print("  ls       - List directory contents");
+                print("  cd       - Change directory");
+                print("  pwd      - Print working directory");
+                print("  mkdir    - Create a directory");
+                print("  touch    - Create an empty file");
+                print("  cat      - Read a file");
+                print("  rm       - Remove a file or directory");
+                print("  echo     - Print text");
+                print("  neofetch - System information");
+                print("  uptime   - Tell how long the system has been running");
+                print("  hostname - Show system hostname");
+                print("  clear    - Clear the terminal screen");
+                print("  reboot   - Restart the system");
+                break;
+
+            case "pwd":
+                print("/" + currentPath.join("/"));
+                break;
+
+            case "hostname":
+                print("mhtos");
+                break;
+
+            case "uptime":
+                print(`up ${getUptime()}, 1 user, load average: 0.00, 0.01, 0.05`);
+                break;
+
+            case "ls":
+                let node = getNode(currentPath);
+                if (node && node.type === 'dir') {
+                    let output = "";
+                    for (let key in node.content) {
+                        let cType = node.content[key].type;
+                        if (cType === 'dir') output += `<span class="dir">${key}</span>  `;
+                        else output += `<span class="file">${key}</span>  `;
+                    }
+                    if (output !== "") print(output, true);
+                }
+                break;
+
+            case "cd":
+                if (!args[1]) {
+                    currentPath = ["home", "mehmet"];
+                } else {
+                    let targetPath = resolvePath(args[1]);
+                    let targetNode = getNode(targetPath);
+                    if (targetNode && targetNode.type === 'dir') {
+                        currentPath = targetPath;
+                    } else if (targetNode && targetNode.type === 'file') {
+                        print(`bash: cd: ${args[1]}: Not a directory`);
+                    } else {
+                        print(`bash: cd: ${args[1]}: No such file or directory`);
+                    }
+                }
+                break;
+
+            case "mkdir":
+                if (!args[1]) {
+                    print("mkdir: missing operand");
+                } else {
+                    let mNode = getNode(currentPath);
+                    if (mNode.content[args[1]]) {
+                        print(`mkdir: cannot create directory '${args[1]}': File exists`);
+                    } else {
+                        mNode.content[args[1]] = { type: "dir", content: {} };
+                        saveVFS();
+                    }
+                }
+                break;
+
+            case "touch":
+                if (!args[1]) {
+                    print("touch: missing file operand");
+                } else {
+                    let tNode = getNode(currentPath);
+                    if (!tNode.content[args[1]]) {
+                        tNode.content[args[1]] = { type: "file", content: "" };
+                        saveVFS();
+                    }
+                }
+                break;
+
+            case "cat":
+                if (!args[1]) {
+                    print("cat: missing file operand");
+                } else {
+                    let targetPathCat = resolvePath(args[1]);
+                    let cNode = getNode(targetPathCat);
+                    if (cNode && cNode.type === 'file') {
+                        print(cNode.content);
+                    } else if (cNode && cNode.type === 'dir') {
+                        print(`cat: ${args[1]}: Is a directory`);
+                    } else {
+                        print(`cat: ${args[1]}: No such file or directory`);
+                    }
+                }
+                break;
+
+            case "rm":
+                if (!args[1]) {
+                    print("rm: missing operand");
+                } else {
+                    let rNode = getNode(currentPath);
+                    if (rNode.content[args[1]]) {
+                        delete rNode.content[args[1]];
+                        saveVFS();
+                    } else {
+                        print(`rm: cannot remove '${args[1]}': No such file or directory`);
+                    }
+                }
+                break;
+
+            case "echo":
+                print(args.slice(1).join(" "));
+                break;
+
+            case "neofetch":
+                let cores = navigator.hardwareConcurrency || "Unknown";
+                let mem = navigator.deviceMemory ? navigator.deviceMemory + "GB" : "Unknown";
+                let fetchArt = `
+<div style="display: flex; gap: 20px;">
+<div style="color: #8ae234;">
 ███╗   ███╗███████╗██╗  ██╗
 ████╗ ████║██╔════╝██║  ██║
 ██╔████╔██║█████╗  ███████║
 ██║╚██╔╝██║██╔══╝  ██╔══██║
 ██║ ╚═╝ ██║███████╗██║  ██║
 ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
+</div>
+<div>
+<span class="user">mehmet@mhtos</span>
+-------------------
+<span class="user">OS</span>: MehmetOS GNU/Linux
+<span class="user">Kernel</span>: 6.18-mehmetos
+<span class="user">Uptime</span>: ${getUptime()}
+<span class="user">Shell</span>: bash
+<span class="user">CPU</span>: ${cores} Cores
+<span class="user">Memory</span>: ${mem}
+</div>
+</div>`;
+                print(fetchArt, true);
+                break;
 
-        MehmetOS
+            case "clear":
+                terminal.innerHTML = "";
+                break;
 
-OS: MehmetOS GNU/Linux
-Kernel: 6.18-mehmetos-custom
-CPU Cores: ${navigator.hardwareConcurrency || "Unknown"}
-RAM: ${ram} GB
-Status: Online
-`
-);
+            case "reboot":
+                location.reload();
+                return;
 
-break;
+            default:
+                print(`bash: ${cmd}: command not found`);
+        }
 
+        newInput();
+    }
 
-case "clear":
-
-terminal.innerHTML="";
-
-break;
-
-
-
-
-
-case "reboot":
-
-location.reload();
-
-break;
-
-
-
-
-
-case "shutdown":
-
-print(
-"System halted."
-);
-
-break;
-
-
-
-
-
-case "":
-
-break;
-
-
-
-
-default:
-
-
-if(cmd.startsWith("echo ")){
-
-print(
-value.substring(5)
-);
-
-}
-
-else{
-
-print(
-"bash: "+value+": command not found"
-);
-
-}
-
-
-}
-
-
-
-newInput();
-
-
-
-}
-
-
-
-
-
-
-startBoot();
-
-
+    // Sistemi başlat
+    init();
 
 </script>
 
-
 </body>
-
 </html>
