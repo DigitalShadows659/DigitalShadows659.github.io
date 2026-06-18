@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mehmet OS GNU/Linux</title>
+<title>MehmetOS GNU/Linux</title>
+
 
 <style>
 
@@ -14,27 +16,34 @@ body{
     background:#000;
     color:#00ff00;
     font-family:monospace;
-    font-size:20px;
+    font-size:18px;
     padding:20px;
 }
 
 
-#yazi{
-    white-space:pre-line;
+#terminal{
+    white-space:pre-wrap;
 }
 
 
 input{
 
     background:transparent;
-    color:#00ff00;
     border:none;
     outline:none;
 
+    color:#00ff00;
+
     font-family:monospace;
-    font-size:20px;
+    font-size:18px;
 
     width:300px;
+}
+
+
+.prompt{
+
+    display:flex;
 
 }
 
@@ -47,90 +56,84 @@ input{
 <body>
 
 
-<div id="yazi"></div>
+<div id="terminal"></div>
 
 
 
 <script>
 
 
-let yazilar = [
+const terminal =
+document.getElementById("terminal");
 
-"MehmetOS GNU/Linux",
 
-"Starting system...",
 
+function print(text){
+
+let div =
+document.createElement("div");
+
+div.innerHTML=text;
+
+terminal.appendChild(div);
+
+}
+
+
+
+
+
+let boot=[
+
+"GNU GRUB version 2.12",
+"",
+"Loading MehmetOS GNU/Linux...",
 "Loading kernel...",
-
-"Initializing hardware...",
-
-"Mounting filesystems...",
-
-"Starting services...",
-
-"Loading network...",
-
-"Starting desktop environment...",
-
-"Welcome.",
-
-"[ OK ] Started System Initialization",
-
-"[ OK ] Mounted /home",
-
-"[ OK ] Reached target Network",
-
-"[ OK ] Started Display Manager",
-
-"[ OK ] Started User Session",
-
-"Welcome to GNU/Linux",
-
-"BIOS check...",
-
-"CPU detected...",
-
-"Memory test...",
-
-"Loading GNU/Linux kernel...",
-
-"Starting modules...",
-
-"Preparing desktop...",
-
-"Login ready."
+"Loading initramfs...",
+"",
+"[ OK ] CPU initialized",
+"[ OK ] Memory initialized",
+"[ OK ] Drivers loaded",
+"[ OK ] Filesystem mounted",
+"[ OK ] Starting systemd",
+"[ OK ] Network started",
+"[ OK ] Login manager started",
+"",
+"MehmetOS GNU/Linux",
+"System ready.",
+""
 
 ];
 
 
 
-let i = 0;
-
-let ekran = document.getElementById("yazi");
+let x=0;
 
 
 
+function startBoot(){
 
 
-function yaz(){
+if(x < boot.length){
 
 
-if(i < yazilar.length){
+print(boot[x]);
+
+x++;
 
 
-ekran.innerHTML += yazilar[i] + "<br>";
-
-i++;
-
-
-setTimeout(yaz,500);
+setTimeout(
+startBoot,
+350
+);
 
 
+}
 
-}else{
+else{
 
 
-setTimeout(terminal,2000);
+setTimeout(startTerminal,1000);
 
 
 }
@@ -143,22 +146,24 @@ setTimeout(terminal,2000);
 
 
 
-function terminal(){
+
+function startTerminal(){
 
 
-ekran.innerHTML =
-
-`
-
-MehmetOS GNU/Linux'a hoşgeldiniz.<br>
-
-Sistem hazır.<br><br>
-
-`;
+terminal.innerHTML="";
 
 
+print(
+"MehmetOS GNU/Linux Terminal"
+);
 
-komutSatiri();
+
+print(
+"Type help for commands."
+);
+
+
+newInput();
 
 
 }
@@ -168,26 +173,40 @@ komutSatiri();
 
 
 
-
-
-function komutSatiri(){
-
-
-
-ekran.innerHTML +=
-
-
-`
-
-<span>root@mhtos:~$ </span>
-
-<input id="komut" autofocus>
-
-`;
+function newInput(){
 
 
 
-let input = document.getElementById("komut");
+let row =
+document.createElement("div");
+
+
+row.className="prompt";
+
+
+
+let text =
+document.createElement("span");
+
+
+text.innerHTML =
+"root@mhtos:~$ ";
+
+
+
+let input =
+document.createElement("input");
+
+
+
+row.appendChild(text);
+
+row.appendChild(input);
+
+
+
+terminal.appendChild(row);
+
 
 
 input.focus();
@@ -196,95 +215,77 @@ input.focus();
 
 
 
-input.onkeydown = function(e){
+input.addEventListener(
+"keydown",
+function(e){
 
 
 
-if(e.key === "Enter"){
+if(e.key==="Enter"){
+
+
+let value =
+input.value.trim();
 
 
 
-let komut = input.value.trim().toLowerCase();
+input.disabled=true;
 
 
 
-ekran.innerHTML +=
-
-`<br>root@mhtos:~$ ${komut}<br>`;
+runCommand(value);
 
 
 
+}
+
+});
 
 
-switch(komut){
+
+}
+
+
+
+
+
+
+function runCommand(value){
+
+
+
+let cmd =
+value.toLowerCase();
+
+
+
+print(
+""
+);
+
+
+
+switch(cmd){
 
 
 
 case "help":
 
-ekran.innerHTML +=
-
+print(
 `
-
-Komutlar:<br>
-
-help<br>
-
-clear<br>
-
-date<br>
-
-uname<br>
-
-whoami<br>
-
-ls<br>
-
-pwd<br>
-
-echo yazı<br>
-
-neofetch<br>
-
-reboot<br>
-
-shutdown<br>
-
-`;
-
-break;
-
-
-
-
-
-case "whoami":
-
-ekran.innerHTML += "root<br>";
-
-break;
-
-
-
-
-
-case "uname":
-
-ekran.innerHTML +=
-
-"MehmetOS GNU/Linux x86_64<br>";
-
-break;
-
-
-
-
-
-case "pwd":
-
-ekran.innerHTML +=
-
-"/root<br>";
+help
+ls
+pwd
+whoami
+uname
+date
+echo
+neofetch
+clear
+reboot
+shutdown
+`
+);
 
 break;
 
@@ -294,9 +295,41 @@ break;
 
 case "ls":
 
-ekran.innerHTML +=
+print(
+"Documents  Downloads  Music  Pictures  Videos"
+);
 
-"Documents Downloads Pictures Music<br>";
+break;
+
+
+
+
+
+case "pwd":
+
+print("/root");
+
+break;
+
+
+
+
+
+case "whoami":
+
+print("root");
+
+break;
+
+
+
+
+
+case "uname":
+
+print(
+"Linux mhtos 6.18-custom x86_64 GNU/Linux"
+);
 
 break;
 
@@ -306,9 +339,21 @@ break;
 
 case "date":
 
-ekran.innerHTML +=
+print(
+new Date()
+);
 
-new Date()+"<br>";
+break;
+
+
+
+
+
+case "echo":
+
+print(
+"Usage: echo text"
+);
 
 break;
 
@@ -318,21 +363,14 @@ break;
 
 case "neofetch":
 
-ekran.innerHTML +=
-
+print(
 `
-
-OS: MehmetOS GNU/Linux<br>
-
-Kernel: 6.18-custom<br>
-
-Shell: mhtsh<br>
-
-CPU: Virtual CPU<br>
-
-Memory: Online<br>
-
-`;
+OS: MehmetOS GNU/Linux
+Kernel: 6.18-custom
+Shell: mhtsh
+CPU: Virtual CPU
+`
+);
 
 break;
 
@@ -342,7 +380,7 @@ break;
 
 case "clear":
 
-ekran.innerHTML="";
+terminal.innerHTML="";
 
 break;
 
@@ -362,61 +400,46 @@ break;
 
 case "shutdown":
 
-ekran.innerHTML +=
-
-"System halted.<br>";
+print(
+"System halted."
+);
 
 break;
 
+
+
+
+
+case "":
+
+break;
 
 
 
 
 default:
 
+if(cmd.startsWith("echo ")){
 
-if(komut.startsWith("echo ")){
-
-ekran.innerHTML +=
-
-komut.replace("echo ","")+
-
-"<br>";
+print(
+value.substring(5)
+);
 
 }
 
 else{
 
-
-ekran.innerHTML +=
-
-"Komut bulunamadı: "
-
-+ komut +
-
-"<br>";
+print(
+"bash: "+value+": command not found"
+);
 
 }
-
-
-break;
-
-
 
 }
 
 
 
-komutSatiri();
-
-
-
-}
-
-
-
-}
-
+newInput();
 
 
 
@@ -427,13 +450,11 @@ komutSatiri();
 
 
 
-
-yaz();
+startBoot();
 
 
 
 </script>
-
 
 
 </body>
