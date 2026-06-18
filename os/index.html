@@ -77,6 +77,9 @@ div.innerHTML=text;
 
 terminal.appendChild(div);
 
+terminal.scrollTop =
+terminal.scrollHeight;
+
 }
 
 
@@ -229,11 +232,22 @@ input.value.trim();
 
 
 
+let cmd =
+value.toLowerCase();
+
+
+
 input.disabled=true;
 
 
 
-runCommand(value);
+print(
+"root@mhtos:~$ "+value
+);
+
+
+
+runCommand(cmd,value);
 
 
 
@@ -250,18 +264,7 @@ runCommand(value);
 
 
 
-function runCommand(value){
-
-
-
-let cmd =
-value.toLowerCase();
-
-
-
-print(
-""
-);
+function runCommand(cmd,value){
 
 
 
@@ -279,7 +282,7 @@ pwd
 whoami
 uname
 date
-echo
+echo text
 neofetch
 clear
 reboot
@@ -346,51 +349,27 @@ new Date()
 break;
 
 
+let ram = navigator.deviceMemory || "Unknown";
 
-
-
-case "echo":
-
-print(
-"Usage: echo text"
-);
-
-break;
-
-
-
-
-
-case "neofetch":
 
 print(
 `
-            .-"""-.
-           '       \
-          |,.  ,-.  |
-          |()L( ()| |
-          |,'  `".| |
-          |.___.',| `
-         .j `--"' `  `.
-        / '        '   \
-       / /          `   `.
-      / /            `    .
-     / /              l   |
-    . ,               |   |
-    ,"`.             .|   |
- _.'   ``.          | `..-'l
-|       `.`,        |      `.
-|         `.    __.j         )
-|__        |--""___|      ,-'
-   `"--...,+""""   `._,.-' 
+███╗   ███╗███████╗██╗  ██╗
+████╗ ████║██╔════╝██║  ██║
+██╔████╔██║█████╗  ███████║
+██║╚██╔╝██║██╔══╝  ██╔══██║
+██║ ╚═╝ ██║███████╗██║  ██║
+╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
+
+        MehmetOS
+        
 OS: MehmetOS GNU/Linux
-Kernel: 6.18-custom
-Shell: mhtsh
-CPU: Virtual CPU
+Kernel: 6.18-mehmetos-custom
+CPU Cores: ${navigator.hardwareConcurrency || "Unknown"}
+RAM: ${ram} GB
+Status: Online
 `
 );
-
-break;
 
 
 
@@ -437,6 +416,7 @@ break;
 
 default:
 
+
 if(cmd.startsWith("echo ")){
 
 print(
@@ -452,6 +432,7 @@ print(
 );
 
 }
+
 
 }
 
