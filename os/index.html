@@ -5,20 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mehmet OS GNU/Linux</title>
   <style>
-body {
-  background: black;
+
+body{
+
+ background:#000;
+
+ color:#00ff00;
+
+ font-family:monospace;
+
+ font-size:20px;
+
+ padding:20px;
+
 }
 
-#yazi {
-  color: lime;
-  font-family: monospace;
-  font-size: 22px;
+
+#yazi{
+
+ white-space:pre-line;
+
 }
-  </style>
+
+
+input{
+
+ background:transparent;
+
+ color:#00ff00;
+
+ border:none;
+
+ outline:none;
+
+ font-family:monospace;
+
+ font-size:20px;
+
+ width:300px;
+
+}
+
+      
 </head>
 <body>
     <div id="yazi">
 <script>
+
 let yazilar = [
   "MehmetOS GNU/Linux",
   "Starting system...",
@@ -44,6 +77,7 @@ let yazilar = [
   "Login ready."
 ];
 
+
 let i = 0;
 let ekran = document.getElementById("yazi");
 
@@ -53,17 +87,19 @@ function yaz(){
   if(i < yazilar.length){
 
     ekran.innerHTML += yazilar[i] + "<br>";
+
     i++;
 
     setTimeout(yaz,500);
 
-  } else {
+  }else{
 
     setTimeout(terminal,2000);
 
   }
 
 }
+
 
 
 function terminal(){
@@ -80,133 +116,215 @@ function terminal(){
 
 
 
+
 function komutSatiri(){
 
  ekran.innerHTML +=
  `
- <span>root@mhtos:~$</span>
+ <span>root@mhtos:~$ </span>
  <input id="komut" autofocus>
  `;
 
 
- let input=document.getElementById("komut");
+ let input =
+ document.getElementById("komut");
+
+
  input.focus();
+
 
 
  input.onkeydown=function(e){
 
-  if(e.key=="Enter"){
 
-    let komut=input.value;
-
-
-    ekran.innerHTML +=
-    `<br>root@mhtos:~$ ${komut}<br>`;
+ if(e.key=="Enter"){
 
 
-    switch(komut){
+ let komut=input.value.toLowerCase();
 
 
-      case "help":
-      ekran.innerHTML +=
-      `
-      Komutlar:<br>
-      help<br>
-      clear<br>
-      date<br>
-      uname<br>
-      whoami<br>
-      ls<br>
-      pwd<br>
-      echo<br>
-      neofetch<br>
-      reboot<br>
-      shutdown<br>
-      `;
-      break;
+
+ ekran.innerHTML +=
+ `<br>root@mhtos:~$ ${komut}<br>`;
 
 
-      case "whoami":
-      ekran.innerHTML += "root<br>";
-      break;
 
 
-      case "uname":
-      ekran.innerHTML +=
-      "MehmetOS GNU/Linux x86_64<br>";
-      break;
+ switch(komut){
 
 
-      case "pwd":
-      ekran.innerHTML +=
-      "/root<br>";
-      break;
+
+ case "help":
+
+ ekran.innerHTML +=
+ `
+ Komutlar:<br>
+ help<br>
+ clear<br>
+ date<br>
+ uname<br>
+ whoami<br>
+ ls<br>
+ pwd<br>
+ echo yazı<br>
+ neofetch<br>
+ reboot<br>
+ shutdown<br>
+ `;
+
+ break;
 
 
-      case "ls":
-      ekran.innerHTML +=
-      "Documents  Downloads  Pictures  Music<br>";
-      break;
 
 
-      case "date":
-      ekran.innerHTML +=
-      new Date()+"<br>";
-      break;
+ case "whoami":
+
+ ekran.innerHTML +=
+ "root<br>";
+
+ break;
 
 
-      case "neofetch":
-      ekran.innerHTML +=
-      `
-      OS: MehmetOS GNU/Linux<br>
-      Kernel: 6.18-custom<br>
-      Shell: mhtsh<br>
-      CPU: Virtual CPU<br>
-      `;
-      break;
 
 
-      case "clear":
-      ekran.innerHTML="";
-      break;
+ case "uname":
+
+ ekran.innerHTML +=
+ "MehmetOS GNU/Linux x86_64<br>";
+
+ break;
 
 
-      case "reboot":
-      location.reload();
-      break;
 
 
-      case "shutdown":
-      ekran.innerHTML+="System halted.<br>";
-      break;
+ case "pwd":
+
+ ekran.innerHTML +=
+ "/root<br>";
+
+ break;
 
 
-      default:
-
-      if(komut.startsWith("echo ")){
-        ekran.innerHTML +=
-        komut.replace("echo ","")+"<br>";
-      }
-      else{
-        ekran.innerHTML +=
-        "Bilinmeyen komut.<br>";
-      }
-
-    }
 
 
-    komutSatiri();
+ case "ls":
 
-  }
+ ekran.innerHTML +=
+ "Documents Downloads Pictures Music<br>";
+
+ break;
+
+
+
+
+ case "date":
+
+ ekran.innerHTML +=
+ new Date()+"<br>";
+
+ break;
+
+
+
+
+
+ case "neofetch":
+
+ ekran.innerHTML +=
+ `
+ OS: MehmetOS GNU/Linux<br>
+ Kernel: 6.18-custom<br>
+ Shell: mhtsh<br>
+ CPU: Virtual CPU<br>
+ Memory: Online<br>
+ `;
+
+ break;
+
+
+
+
+
+ case "clear":
+
+ ekran.innerHTML="";
+
+ break;
+
+
+
+
+
+ case "reboot":
+
+ location.reload();
+
+ break;
+
+
+
+
+
+ case "shutdown":
+
+ ekran.innerHTML +=
+ "System halted.<br>";
+
+ break;
+
+
+
+
+
+ default:
+
+
+ if(komut.startsWith("echo ")){
+
+ ekran.innerHTML +=
+ komut.replace("echo ","")+
+ "<br>";
 
  }
+
+ else{
+
+ ekran.innerHTML +=
+ "Komut bulunamadı: "
+ + komut +
+ "<br>";
+
+ }
+
+ break;
+
+
+
+ }
+
+
+ komutSatiri();
+
+
+ }
+
+
+ }
+
 
 }
 
 
+
 yaz();
 
+
 </script>
+
+
+
+
+</style>
 </div>
 </body>
 </html>
