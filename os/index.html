@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -203,7 +203,10 @@
             logIndex++;
             setTimeout(startBootLogs, Math.random() * 80 + 20); // 20-100ms arası rastgele hız
         } else {
-            setTimeout(startTerminal, 500);
+            setTimeout(() => {
+                terminal.innerHTML = ""; // Boot bittikten sonra ekranı sıfırlama işlemi
+                startTerminal();
+            }, 500);
         }
     }
 
@@ -467,6 +470,6 @@
     init();
 
 </script>
-
 </body>
 </html>
+
