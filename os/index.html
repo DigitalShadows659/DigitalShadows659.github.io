@@ -1,330 +1,441 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mehmet OS GNU/Linux</title>
-  <style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mehmet OS GNU/Linux</title>
+
+<style>
 
 body{
-
- background:#000;
-
- color:#00ff00;
-
- font-family:monospace;
-
- font-size:20px;
-
- padding:20px;
-
+    background:#000;
+    color:#00ff00;
+    font-family:monospace;
+    font-size:20px;
+    padding:20px;
 }
 
 
 #yazi{
-
- white-space:pre-line;
-
+    white-space:pre-line;
 }
 
 
 input{
 
- background:transparent;
+    background:transparent;
+    color:#00ff00;
+    border:none;
+    outline:none;
 
- color:#00ff00;
+    font-family:monospace;
+    font-size:20px;
 
- border:none;
-
- outline:none;
-
- font-family:monospace;
-
- font-size:20px;
-
- width:300px;
+    width:300px;
 
 }
 
-      
+
+</style>
+
 </head>
+
+
 <body>
-    <div id="yazi">
+
+
+<div id="yazi"></div>
+
+
+
 <script>
 
+
 let yazilar = [
-  "MehmetOS GNU/Linux",
-  "Starting system...",
-  "Loading kernel...",
-  "Initializing hardware...",
-  "Mounting filesystems...",
-  "Starting services...",
-  "Loading network...",
-  "Starting desktop environment...",
-  "Welcome.",
-  "[ OK ] Started System Initialization",
-  "[ OK ] Mounted /home",
-  "[ OK ] Reached target Network",
-  "[ OK ] Started Display Manager",
-  "[ OK ] Started User Session",
-  "Welcome to GNU/Linux",
-  "BIOS check...",
-  "CPU detected...",
-  "Memory test...",
-  "Loading GNU/Linux kernel...",
-  "Starting modules...",
-  "Preparing desktop...",
-  "Login ready."
+
+"MehmetOS GNU/Linux",
+
+"Starting system...",
+
+"Loading kernel...",
+
+"Initializing hardware...",
+
+"Mounting filesystems...",
+
+"Starting services...",
+
+"Loading network...",
+
+"Starting desktop environment...",
+
+"Welcome.",
+
+"[ OK ] Started System Initialization",
+
+"[ OK ] Mounted /home",
+
+"[ OK ] Reached target Network",
+
+"[ OK ] Started Display Manager",
+
+"[ OK ] Started User Session",
+
+"Welcome to GNU/Linux",
+
+"BIOS check...",
+
+"CPU detected...",
+
+"Memory test...",
+
+"Loading GNU/Linux kernel...",
+
+"Starting modules...",
+
+"Preparing desktop...",
+
+"Login ready."
+
 ];
 
 
+
 let i = 0;
+
 let ekran = document.getElementById("yazi");
+
+
+
 
 
 function yaz(){
 
-  if(i < yazilar.length){
 
-    ekran.innerHTML += yazilar[i] + "<br>";
+if(i < yazilar.length){
 
-    i++;
 
-    setTimeout(yaz,500);
+ekran.innerHTML += yazilar[i] + "<br>";
 
-  }else{
+i++;
 
-    setTimeout(terminal,2000);
 
-  }
+setTimeout(yaz,500);
+
+
+
+}else{
+
+
+setTimeout(terminal,2000);
+
 
 }
+
+
+}
+
+
+
 
 
 
 function terminal(){
 
- ekran.innerHTML =
- `
- MehmetOS GNU/Linux'a hoşgeldiniz.<br>
- Sistem hazır.<br><br>
- `;
 
- komutSatiri();
+ekran.innerHTML =
+
+`
+
+MehmetOS GNU/Linux'a hoşgeldiniz.<br>
+
+Sistem hazır.<br><br>
+
+`;
+
+
+
+komutSatiri();
+
 
 }
+
+
+
+
 
 
 
 
 function komutSatiri(){
 
- ekran.innerHTML +=
- `
- <span>root@mhtos:~$ </span>
- <input id="komut" autofocus>
- `;
 
 
- let input =
- document.getElementById("komut");
+ekran.innerHTML +=
 
 
- input.focus();
+`
 
+<span>root@mhtos:~$ </span>
 
+<input id="komut" autofocus>
 
- input.onkeydown=function(e){
+`;
 
 
- if(e.key=="Enter"){
 
+let input = document.getElementById("komut");
 
- let komut=input.value.toLowerCase();
 
+input.focus();
 
 
- ekran.innerHTML +=
- `<br>root@mhtos:~$ ${komut}<br>`;
 
 
 
+input.onkeydown = function(e){
 
- switch(komut){
 
 
+if(e.key === "Enter"){
 
- case "help":
 
- ekran.innerHTML +=
- `
- Komutlar:<br>
- help<br>
- clear<br>
- date<br>
- uname<br>
- whoami<br>
- ls<br>
- pwd<br>
- echo yazı<br>
- neofetch<br>
- reboot<br>
- shutdown<br>
- `;
 
- break;
+let komut = input.value.toLowerCase();
 
 
 
+ekran.innerHTML +=
 
- case "whoami":
+`<br>root@mhtos:~$ ${komut}<br>`;
 
- ekran.innerHTML +=
- "root<br>";
 
- break;
 
 
 
+switch(komut){
 
- case "uname":
 
- ekran.innerHTML +=
- "MehmetOS GNU/Linux x86_64<br>";
 
- break;
+case "help":
 
+ekran.innerHTML +=
 
+`
 
+Komutlar:<br>
 
- case "pwd":
+help<br>
 
- ekran.innerHTML +=
- "/root<br>";
+clear<br>
 
- break;
+date<br>
 
+uname<br>
 
+whoami<br>
 
+ls<br>
 
- case "ls":
+pwd<br>
 
- ekran.innerHTML +=
- "Documents Downloads Pictures Music<br>";
+echo yazı<br>
 
- break;
+neofetch<br>
 
+reboot<br>
 
+shutdown<br>
 
+`;
 
- case "date":
+break;
 
- ekran.innerHTML +=
- new Date()+"<br>";
 
- break;
 
 
 
+case "whoami":
 
+ekran.innerHTML += "root<br>";
 
- case "neofetch":
+break;
 
- ekran.innerHTML +=
- `
- OS: MehmetOS GNU/Linux<br>
- Kernel: 6.18-custom<br>
- Shell: mhtsh<br>
- CPU: Virtual CPU<br>
- Memory: Online<br>
- `;
 
- break;
 
 
 
+case "uname":
 
+ekran.innerHTML +=
 
- case "clear":
+"MehmetOS GNU/Linux x86_64<br>";
 
- ekran.innerHTML="";
+break;
 
- break;
 
 
 
 
+case "pwd":
 
- case "reboot":
+ekran.innerHTML +=
 
- location.reload();
+"/root<br>";
 
- break;
+break;
 
 
 
 
 
- case "shutdown":
+case "ls":
 
- ekran.innerHTML +=
- "System halted.<br>";
+ekran.innerHTML +=
 
- break;
+"Documents Downloads Pictures Music<br>";
 
+break;
 
 
 
 
- default:
 
+case "date":
 
- if(komut.startsWith("echo ")){
+ekran.innerHTML +=
 
- ekran.innerHTML +=
- komut.replace("echo ","")+
- "<br>";
+new Date()+"<br>";
 
- }
+break;
 
- else{
 
- ekran.innerHTML +=
- "Komut bulunamadı: "
- + komut +
- "<br>";
 
- }
 
- break;
 
+case "neofetch":
 
+ekran.innerHTML +=
 
- }
+`
 
+OS: MehmetOS GNU/Linux<br>
 
- komutSatiri();
+Kernel: 6.18-custom<br>
 
+Shell: mhtsh<br>
 
- }
+CPU: Virtual CPU<br>
 
+Memory: Online<br>
 
- }
+`;
+
+break;
+
+
+
+
+
+case "clear":
+
+ekran.innerHTML="";
+
+break;
+
+
+
+
+
+case "reboot":
+
+location.reload();
+
+break;
+
+
+
+
+
+case "shutdown":
+
+ekran.innerHTML +=
+
+"System halted.<br>";
+
+break;
+
+
+
+
+
+default:
+
+
+if(komut.startsWith("echo ")){
+
+ekran.innerHTML +=
+
+komut.replace("echo ","")+
+
+"<br>";
+
+}
+
+else{
+
+
+ekran.innerHTML +=
+
+"Komut bulunamadı: "
+
++ komut +
+
+"<br>";
+
+}
+
+
+break;
+
 
 
 }
 
 
 
+komutSatiri();
+
+
+
+}
+
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+
 yaz();
+
 
 
 </script>
 
 
 
-
-</style>
-</div>
 </body>
+
 </html>
