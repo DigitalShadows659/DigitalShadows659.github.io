@@ -17,91 +17,196 @@ body {
   </style>
 </head>
 <body>
-
-<div id="yazi"></div>
-
+    <div id="yazi">
 <script>
-let yazilar = [  
-  "MehmetOS GNU/Linux",  
-  "Starting system...",  
-  "Loading kernel...",  
-  "Initializing hardware...",  
-  "Mounting filesystems...",  
-  "Starting services...",  
-  "Loading network...",  
-  "Starting desktop environment...",  
-  "Welcome.",  
-  "[ OK ] Started System Initialization",  
-  "[ OK ] Mounted /home",  
-  "[ OK ] Reached target Network",  
-  "[ OK ] Started Display Manager",  
-  "[ OK ] Started User Session",  
-  "Welcome to GNU/Linux",  
-  "BIOS check...",  
-  "CPU detected...",  
-  "Memory test...",  
-  "Loading GNU/Linux kernel...",  
-  "Starting modules...",  
-  "Preparing desktop...",  
-  "Login ready.",  
-];  
-  
+let yazilar = [
+  "MehmetOS GNU/Linux",
+  "Starting system...",
+  "Loading kernel...",
+  "Initializing hardware...",
+  "Mounting filesystems...",
+  "Starting services...",
+  "Loading network...",
+  "Starting desktop environment...",
+  "Welcome.",
+  "[ OK ] Started System Initialization",
+  "[ OK ] Mounted /home",
+  "[ OK ] Reached target Network",
+  "[ OK ] Started Display Manager",
+  "[ OK ] Started User Session",
+  "Welcome to GNU/Linux",
+  "BIOS check...",
+  "CPU detected...",
+  "Memory test...",
+  "Loading GNU/Linux kernel...",
+  "Starting modules...",
+  "Preparing desktop...",
+  "Login ready."
+];
+
 let i = 0;
 let ekran = document.getElementById("yazi");
 
-function yaz() {  
-  if (i < yazilar.length) {  
-    ekran.innerHTML += yazilar[i] + "<br>";  
-    i++;  
-    setTimeout(yaz, 500);  
+
+function yaz(){
+
+  if(i < yazilar.length){
+
+    ekran.innerHTML += yazilar[i] + "<br>";
+    i++;
+
+    setTimeout(yaz,500);
+
   } else {
-    setTimeout(() => {
-      ekran.innerHTML += "<br>MehmetOS GNU/Linux'a hoşgeldiniz.<br><br>";
-      
-      ekran.innerHTML += `
-        <div>
-          root@mhtos $ ~ 
-          <input id="komut" autofocus>
-        </div>
-      `;
 
-      let input = document.getElementById("komut");
+    setTimeout(terminal,2000);
 
-      input.addEventListener("keydown", function(e) {
-        if (e.key === "Enter") {
-          let komut = input.value;
-
-          ekran.innerHTML += "<br>Root@mhtos $ " + komut + "<br>";
-
-          if (komut === "help") {
-            ekran.innerHTML += 
-            "Komutlar: help, clear, date, uname, reboot<br>";
-          } 
-          else if (komut === "uname") {
-            ekran.innerHTML += "MehmetOS GNU/Linux x86_64<br>";
-          }
-          else if (komut === "date") {
-            ekran.innerHTML += new Date() + "<br>";
-          }
-          else if (komut === "clear") {
-            ekran.innerHTML = "";
-          }
-          else if (komut === "reboot") {
-            location.reload();
-          }
-          else {
-            ekran.innerHTML += "Komut bulunamadı<br>";
-          }
-
-          input.value = "";
-        }
-      });
-
-    }, 2000);
   }
+
 }
 
+
+function terminal(){
+
+ ekran.innerHTML =
+ `
+ MehmetOS GNU/Linux'a hoşgeldiniz.<br>
+ Sistem hazır.<br><br>
+ `;
+
+ komutSatiri();
+
+}
+
+
+
+function komutSatiri(){
+
+ ekran.innerHTML +=
+ `
+ <span>root@mhtos:~$</span>
+ <input id="komut" autofocus>
+ `;
+
+
+ let input=document.getElementById("komut");
+ input.focus();
+
+
+ input.onkeydown=function(e){
+
+  if(e.key=="Enter"){
+
+    let komut=input.value;
+
+
+    ekran.innerHTML +=
+    `<br>root@mhtos:~$ ${komut}<br>`;
+
+
+    switch(komut){
+
+
+      case "help":
+      ekran.innerHTML +=
+      `
+      Komutlar:<br>
+      help<br>
+      clear<br>
+      date<br>
+      uname<br>
+      whoami<br>
+      ls<br>
+      pwd<br>
+      echo<br>
+      neofetch<br>
+      reboot<br>
+      shutdown<br>
+      `;
+      break;
+
+
+      case "whoami":
+      ekran.innerHTML += "root<br>";
+      break;
+
+
+      case "uname":
+      ekran.innerHTML +=
+      "MehmetOS GNU/Linux x86_64<br>";
+      break;
+
+
+      case "pwd":
+      ekran.innerHTML +=
+      "/root<br>";
+      break;
+
+
+      case "ls":
+      ekran.innerHTML +=
+      "Documents  Downloads  Pictures  Music<br>";
+      break;
+
+
+      case "date":
+      ekran.innerHTML +=
+      new Date()+"<br>";
+      break;
+
+
+      case "neofetch":
+      ekran.innerHTML +=
+      `
+      OS: MehmetOS GNU/Linux<br>
+      Kernel: 6.18-custom<br>
+      Shell: mhtsh<br>
+      CPU: Virtual CPU<br>
+      `;
+      break;
+
+
+      case "clear":
+      ekran.innerHTML="";
+      break;
+
+
+      case "reboot":
+      location.reload();
+      break;
+
+
+      case "shutdown":
+      ekran.innerHTML+="System halted.<br>";
+      break;
+
+
+      default:
+
+      if(komut.startsWith("echo ")){
+        ekran.innerHTML +=
+        komut.replace("echo ","")+"<br>";
+      }
+      else{
+        ekran.innerHTML +=
+        "Bilinmeyen komut.<br>";
+      }
+
+    }
+
+
+    komutSatiri();
+
+  }
+
+ }
+
+}
+
+
 yaz();
+
 </script>
+</div>
 </body>
 </html>
