@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehmet OS GNU/Linux</title>
+  <style>
+body {
+  background: black;
+}
+
+#yazi {
+  color: lime;
+  font-family: monospace;
+  font-size: 22px;
+}
+  </style>
+</head>
+<body>
+
+<div id="yazi"></div>
+
+<script>
+let yazilar = [  
+  "MehmetOS GNU/Linux",  
+  "Starting system...",  
+  "Loading kernel...",  
+  "Initializing hardware...",  
+  "Mounting filesystems...",  
+  "Starting services...",  
+  "Loading network...",  
+  "Starting desktop environment...",  
+  "Welcome.",  
+  "[ OK ] Started System Initialization",  
+  "[ OK ] Mounted /home",  
+  "[ OK ] Reached target Network",  
+  "[ OK ] Started Display Manager",  
+  "[ OK ] Started User Session",  
+  "Welcome to GNU/Linux",  
+  "BIOS check...",  
+  "CPU detected...",  
+  "Memory test...",  
+  "Loading GNU/Linux kernel...",  
+  "Starting modules...",  
+  "Preparing desktop...",  
+  "Login ready.",  
+];  
+  
+let i = 0;
+let ekran = document.getElementById("yazi");
+
+function yaz() {  
+  if (i < yazilar.length) {  
+    ekran.innerHTML += yazilar[i] + "<br>";  
+    i++;  
+    setTimeout(yaz, 2000);  
+  } else {
+    setTimeout(() => {
+      ekran.innerHTML += "<br>MehmetOS GNU/Linux'a hoşgeldiniz.<br><br>";
+      
+      ekran.innerHTML += `
+        <div>
+          root@mhtos $ ~ 
+          <input id="komut" autofocus>
+        </div>
+      `;
+
+      let input = document.getElementById("komut");
+
+      input.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+          let komut = input.value;
+
+          ekran.innerHTML += "<br>Root@mhtos $ " + komut + "<br>";
+
+          if (komut === "help") {
+            ekran.innerHTML += 
+            "Komutlar: help, clear, date, uname, reboot<br>";
+          } 
+          else if (komut === "uname") {
+            ekran.innerHTML += "MehmetOS GNU/Linux x86_64<br>";
+          }
+          else if (komut === "date") {
+            ekran.innerHTML += new Date() + "<br>";
+          }
+          else if (komut === "clear") {
+            ekran.innerHTML = "";
+          }
+          else if (komut === "reboot") {
+            location.reload();
+          }
+          else {
+            ekran.innerHTML += "Komut bulunamadı<br>";
+          }
+
+          input.value = "";
+        }
+      });
+
+    }, 2000);
+  }
+}
+
+yaz();
+</script>
+</body>
+</html>
