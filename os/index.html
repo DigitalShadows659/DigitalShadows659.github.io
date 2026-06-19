@@ -46,10 +46,10 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: 16px;
             flex-grow: 1;
-            caret-color: #8ae234; /* Yanıp sönen yeşil imleç */
+            caret-color: #8ae234; 
         }
 
-        /* GRUB Menü Stili */
+    
         #grub {
             border: 2px solid #ccc;
             padding: 10px;
@@ -72,7 +72,6 @@
     const terminal = document.getElementById("terminal");
     const bootTime = Date.now();
     
-    // --- SANAL DOSYA SİSTEMİ (VFS) KURULUMU ---
     let vfs = JSON.parse(localStorage.getItem('mehmetos_vfs'));
     if (!vfs) {
         vfs = {
@@ -150,7 +149,7 @@
         return `${m} mins, ${s} secs`;
     }
 
-    // --- BOOT SÜRECİ VE GRUB ---
+    
     const grubScreen = `
 <div id="grub">
     <div style="text-align:center;">GNU GRUB version 2.12</div>
@@ -201,10 +200,10 @@
         if (logIndex < bootLogs.length) {
             print(colorizeLog(bootLogs[logIndex]), true);
             logIndex++;
-            setTimeout(startBootLogs, Math.random() * 80 + 20); // 20-100ms arası rastgele hız
+            setTimeout(startBootLogs, Math.random() * 80 + 20);
         } else {
             setTimeout(() => {
-                terminal.innerHTML = ""; // Boot bittikten sonra ekranı sıfırlama işlemi
+                terminal.innerHTML = "";
                 startTerminal();
             }, 500);
         }
@@ -225,10 +224,12 @@
         }, 1000);
     }
 
-    // --- TERMİNAL ARAYÜZÜ ---
+    
     function startTerminal() {
         print("<br>Welcome to MehmetOS GNU/Linux!", true);
         print("Type 'help' for a list of available commands.<br>", true);
+        print("The technical maintenance, updates, and sustainability processes of this website are managed partially or fully by @DigitalShadows659 via GitHub.<br>", true);
+        print("Bu web sitesinin teknik bakım, güncelleme ve sürdürülebilirlik süreçleri, GitHub üzerinden @DigitalShadows659 tarafından kısmi veya tam yetkiyle yürütülmektedir.<br>",  true);
         newInput();
     }
 
@@ -260,7 +261,7 @@
         input.focus();
         window.scrollTo(0, document.body.scrollHeight);
 
-        // Boşluğa tıklayınca inputa odaklan
+        
         document.onclick = () => input.focus();
 
         input.addEventListener("keydown", function(e) {
@@ -295,7 +296,7 @@
         });
     }
 
-    // --- KOMUT İŞLEYİCİSİ ---
+    
     function runCommand(rawValue) {
         if (rawValue === "") {
             newInput();
@@ -466,13 +467,10 @@
         newInput();
     }
 
-    // Sistemi başlat
+
     init();
 
 </script>
-    <footer>
-        <p>bu sitenin bakım,ekleme ve sürdürme işlemleri tamamen ve ya kısmi olarak @DigitalShadows659(github) tarafından sağlanmaktadır.</p>
-    </footer>
 </body>
 </html>
 
