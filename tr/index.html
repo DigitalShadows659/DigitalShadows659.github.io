@@ -9,7 +9,8 @@
 </head>
 
 <body>
-<nav><button onclick="white()">White Theme</button> <button onclick="dark()">Dark Theme</button>
+<nav><button onclick="white()">White Theme</button> <button onclick="dark()">Dark Theme</button> <button onclick="darkblue()">Gece Mavisi</button> 
+  
   
 </nav>
 <header>
@@ -88,6 +89,12 @@
     document.documentElement.style.setProperty('--ana-yazi', '#eaeaea');
     document.documentElement.style.setProperty('--baslik-rengi', '#ffffff');
   }
+    function darkblue() {
+    document.documentElement.style.setProperty('--ana-arka-plan', '#003366');
+    document.documentElement.style.setProperty('--panel-arka-plan', '#1b1b1b');
+    document.documentElement.style.setProperty('--ana-yazi', '#eaeaea');
+    document.documentElement.style.setProperty('--baslik-rengi', '#ffffff');
+    }
 </script>
 </body>
 </html>
