@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEHMETOS Sitesine Yönlendirme</title>
+    
+    <!-- JavaScript OLMADAN yönlendirme -->
+    <meta http-equiv="refresh" content="5; url=https://os.mehmet.is-a.dev" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fdbb2d;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fdbb2d;
+            margin: 20px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #fdbb2d;
+            color: #1a2a6c;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+            background: #ffd966;
+            box-shadow: 0 0 20px rgba(253, 187, 45, 0.5);
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🚀</div>
+        <h1>MEHMETOS</h1>
+        <p>MehmetOS sitemize yönlendiriliyorsunuz...</p>
+        <div class="timer" id="timer">5</div>
+        <a href="https://os.mehmet.is-a.dev" class="button">Hemen Git →</a>
+        
+                                        
+    </div>
+
+    <script>
+        let timeLeft = 5;
+        const timerElement = document.getElementById('timer');
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                window.location.href = 'https://os.mehmet.is-a.dev';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
